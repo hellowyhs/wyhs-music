@@ -15,6 +15,7 @@
             <li><a href="#tracks">Tracks</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="https://wyhs.netlify.app" target="_blank" class="player-link">▶ PLAYER</a></li>
         </ul>
         <div class="mobile-menu">☰</div>
     </nav>
@@ -22,7 +23,10 @@
     <section class="hero" id="home">
         <h1>wyhs</h1>
         <p>Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
-        <button class="btn-primary" id="mainPlayBtn">▶ PLAY LATEST</button>
+        <div class="hero-buttons">
+            <a href="https://wyhs.netlify.app" target="_blank" class="btn-primary">▶ GO TO PLAYER</a>
+            <a href="#tracks" class="btn-secondary">VIEW TRACKS</a>
+        </div>
     </section>
 
     <section id="tracks">
@@ -46,22 +50,12 @@
         </form>
     </section>
 
-    <div class="now-playing" id="nowPlaying">
-        <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
-        <div class="np-info">
-            <div class="np-title" id="npTitle">SELECT A TRACK</div>
-            <div class="np-artist" id="npArtist">wyhs</div>
-        </div>
-        <div class="np-controls">
-            <button class="np-btn" id="prevBtn"></button>
-            <button class="np-btn" id="playPauseBtn">⏸</button>
-            <button class="np-btn" id="nextBtn">⏭</button>
-        </div>
-    </div>
-
     <footer>
         <p>© 2026 wyhs</p>
-        <a href="#" target="_blank" class="support-link" id="supportLink">SUPPORT WYHS</a>
+        <div class="footer-links">
+            <a href="https://wyhs.netlify.app" target="_blank" class="support-link">▶ MUSIC PLAYER</a>
+            <a href="#" target="_blank" class="support-link" id="supportLink">SUPPORT WYHS</a>
+        </div>
     </footer>
 
     <audio id="audioPlayer" preload="auto"></audio>
