@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
         });
         
-        // Close menu when a link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -59,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'track-card';
             
-            // Image container
             const artContainer = document.createElement('div');
             artContainer.className = 'track-art';
             
@@ -82,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             artContainer.appendChild(img);
             artContainer.appendChild(fallback);
 
-            // Info section
             const info = document.createElement('div');
             info.className = 'track-info';
             
@@ -97,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
             info.appendChild(trackTitle);
             info.appendChild(trackArtist);
 
-            // Player controls
             const playerControls = document.createElement('div');
             playerControls.className = 'player-controls';
             
@@ -124,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
             playerControls.appendChild(pauseBtn);
             playerControls.appendChild(progressContainer);
 
-            // Lyrics section (only if lyrics exist)
             let lyricsSection = null;
             if (lyrics) {
                 lyricsSection = document.createElement('div');
@@ -151,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tracksGrid.appendChild(card);
         });
 
-        // Add event listeners to play buttons
         document.querySelectorAll('.play-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const index = parseInt(e.target.dataset.index);
@@ -160,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Add event listeners to pause buttons
         document.querySelectorAll('.pause-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 pauseAll();
@@ -232,6 +225,5 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseAll();
     });
 
-    // Initialize
     loadTracks();
 });
