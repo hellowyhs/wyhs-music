@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WYHS Music — Press Play</title>
+    <title>WYHS Music</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="gradient-bg"></div>
-    <canvas id="audioVisualizer"></canvas>
-    <div class="floating-notes" id="floatingNotes"></div>
-    <div class="gradient-overlay"></div>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">WYHS</div>
         <ul class="nav-links">
@@ -25,75 +19,52 @@
         <div class="mobile-menu">☰</div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>WYHS</h1>
         <p>Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
-        
-        <div class="vinyl-container">
-            <div class="vinyl-record" id="vinylRecord">
-                <div class="vinyl-label">WYHS</div>
-            </div>
-        </div>
-        
-        <button class="play-btn" id="mainPlayBtn">▶ Play Now</button>
+        <button class="hero-btn" id="mainPlayBtn">▶ Play Latest</button>
     </section>
 
-    <!-- Tracks Section -->
-    <section id="tracks" class="reveal">
+    <section id="tracks">
         <h2 class="section-title">Discography</h2>
-        <div class="tracks-grid" id="tracksGrid">
-            <!-- Tracks will be loaded here by JavaScript -->
-        </div>
+        <div class="tracks-grid" id="tracksGrid"></div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="reveal">
+    <section id="about">
         <h2 class="section-title">About</h2>
-        <div class="about-content">
-            <p>wyhs makes music with no fixed genre — whatever idea comes.</p>
-            <p style="margin-top: 1rem;">Music can take any shape. Wherever the idea leads.</p>
-        </div>
+        <p class="about-text">wyhs makes music with no fixed genre — whatever idea comes.<br>Music can take any shape. Wherever the idea leads.</p>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="reveal">
+    <section id="contact">
         <h2 class="section-title">Contact</h2>
-        <div class="contact-form">
-            <p style="margin-bottom: 2rem;">Request an encore. The set's not over — send a request, feedback, or just say hello.</p>
-            <form>
-                <input type="text" placeholder="Your name" class="form-input">
-                <input type="email" placeholder="Email" class="form-input">
-                <textarea placeholder="Message" rows="5" class="form-input"></textarea>
-                <button type="submit" class="play-btn" style="margin-top: 1rem;">▶ Send</button>
-            </form>
-        </div>
+        <p class="about-text" style="margin-bottom: 2rem;">Request an encore. The set's not over — send a request, feedback, or just say hello.</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your name" class="form-input">
+            <input type="email" placeholder="Email" class="form-input">
+            <textarea placeholder="Message" rows="4" class="form-input"></textarea>
+            <button type="submit" class="hero-btn" style="align-self: center;">Send</button>
+        </form>
     </section>
 
-    <!-- Now Playing Bar -->
     <div class="now-playing" id="nowPlaying">
-        <div class="progress-bar" id="progressBar"></div>
-        <div class="now-playing-info">
-            <div class="now-playing-title" id="nowPlayingTitle">Select a track</div>
-            <div class="now-playing-artist" id="nowPlayingArtist">WYHS</div>
+        <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="np-info">
+            <div class="np-title" id="npTitle">Select a track</div>
+            <div class="np-artist" id="npArtist">WYHS</div>
         </div>
-        <div class="now-playing-controls">
-            <button class="control-btn" id="prevBtn">⏮</button>
-            <button class="control-btn" id="playPauseBtn">⏸</button>
-            <button class="control-btn" id="nextBtn">⏭</button>
+        <div class="np-controls">
+            <button class="np-btn" id="prevBtn">⏮</button>
+            <button class="np-btn" id="playPauseBtn">⏸</button>
+            <button class="np-btn" id="nextBtn">⏭</button>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>© 2026 WYHS — PRESS PLAY</p>
-        <a href="https://ko-fi.com/wyhsmusic" target="_blank" class="support-link" id="supportLink">Support WYHS</a>
+        <a href="https://ko-fi.com/wyhsmusic" target="_blank" class="support-link">Support WYHS</a>
     </footer>
 
-    <!-- Audio Player -->
     <audio id="audioPlayer" preload="auto"></audio>
-
-    <!-- Scripts -->
     <script src="playlist.js"></script>
     <script src="scripts.js"></script>
 </body>
