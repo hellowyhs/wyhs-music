@@ -1,663 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>wyhs music</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-  :root {
-    --c-cyan:    #00AEEF;
-    --c-magenta: #EC008C;
-    --c-yellow:  #FFF200;
-    --c-ink:     #141414;
-    --c-paper:   #F2F2EF;
-    --c-white:   #FFFFFF;
-    --c-line:    rgba(20,20,20,0.15);
-
-    --font-display: 'Space Grotesk', system-ui, sans-serif;
-    --font-body:    'Inter', system-ui, sans-serif;
-    --font-mono:    'JetBrains Mono', monospace;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font-body);
-    background: var(--c-paper);
-    color: var(--c-ink);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-  h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.1; }
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-
-  .reg-mark {
-    width: 18px; height: 18px;
-    position: relative;
-    opacity: 0.55;
-    flex-shrink: 0;
-  }
-  .reg-mark::before, .reg-mark::after {
-    content: ""; position: absolute; background: var(--c-ink);
-  }
-  .reg-mark::before { left: 50%; top: 0; width: 1px; height: 100%; transform: translateX(-50%); }
-  .reg-mark::after { top: 50%; left: 0; height: 1px; width: 100%; transform: translateY(-50%); }
-  .reg-mark span {
-    position: absolute; inset: 3px;
-    border: 1px solid var(--c-ink); border-radius: 50%;
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 18px;
-    opacity: 0.75;
-  }
-  .eyebrow .reg-mark { width: 12px; height: 12px; }
-
-  .btn {
-    position: relative;
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 16px 26px;
-    background: var(--c-ink);
-    color: var(--c-paper);
-    border: 2px solid var(--c-ink);
-    z-index: 1;
-  }
-  .btn::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: var(--c-yellow);
-    transform: translate(6px, 6px);
-    z-index: -1;
-    transition: transform 0.15s ease;
-  }
-  .btn:hover::after { transform: translate(3px, 3px); }
-  .btn:active::after { transform: translate(0, 0); }
-  .btn--outline { background: transparent; color: var(--c-ink); }
-  .btn--outline::after { background: var(--c-cyan); }
-  .btn--magenta::after { background: var(--c-magenta); }
-
-  .masthead {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--c-paper);
-    border-bottom: 2px solid var(--c-ink);
-  }
-  .masthead__inner {
-    max-width: 1180px; margin: 0 auto;
-    padding: 20px 28px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .masthead__logo {
-    font-family: var(--font-display); font-weight: 800;
-    font-size: 19px; letter-spacing: -0.3px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .masthead__logo-mark { width: 12px; height: 12px; background: var(--c-magenta); }
-  .masthead__nav { display: flex; gap: 34px; align-items: center; }
-  .masthead__nav a {
-    font-family: var(--font-mono); font-size: 12px;
-    text-transform: uppercase; letter-spacing: 1px;
-    position: relative; padding-bottom: 3px;
-  }
-  .masthead__nav a::after {
-    content: ""; position: absolute; left: 0; bottom: 0;
-    width: 0; height: 2px; background: var(--c-magenta);
-    transition: width 0.2s ease;
-  }
-  .masthead__nav a:hover::after { width: 100%; }
-  .masthead__burger { display: none; font-size: 22px; }
-
-  .hero { padding: 110px 0 90px; position: relative; }
-
-  .wordmark {
-    position: relative;
-    font-weight: 800;
-    font-size: clamp(52px, 10.5vw, 148px);
-    line-height: 0.86;
-    letter-spacing: -3px;
-    text-transform: uppercase;
-    margin-bottom: 40px;
-  }
-  .wordmark .layer { display: block; }
-  .wordmark .layer.ghost {
-    position: absolute; top: 0; left: 0;
-    mix-blend-mode: multiply;
-    user-select: none;
-  }
-  .wordmark .layer.cyan    { color: var(--c-cyan);    transform: translate(-5px, -5px); }
-  .wordmark .layer.magenta { color: var(--c-magenta); transform: translate(5px, -2px); }
-  .wordmark .layer.yellow  { color: var(--c-yellow);  transform: translate(0, 5px); }
-  .wordmark .layer.key     { color: var(--c-ink); position: relative; }
-
-  .hero__tagline {
-    font-family: var(--font-mono);
-    font-size: 15px;
-    letter-spacing: 0.3px;
-    max-width: 480px;
-    margin-bottom: 40px;
-    opacity: 0.85;
-  }
-  .hero__cta-row { display: flex; gap: 18px; flex-wrap: wrap; }
-
-  .about {
-    padding: 90px 0;
-    border-top: 2px solid var(--c-ink);
-    border-bottom: 2px solid var(--c-ink);
-  }
-  .about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-  .about__bio {
-    border-left: 3px solid var(--c-magenta);
-    padding-left: 24px;
-    font-size: 17px;
-    line-height: 1.8;
-  }
-  .about__bio p { margin-bottom: 14px; }
-  .about__bio .cursor {
-    display: inline-block; width: 9px; height: 17px;
-    background: var(--c-ink); vertical-align: middle;
-    animation: blink 1s ease-in-out infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  .log-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--c-line);
-    font-family: var(--font-mono); font-size: 13px;
-  }
-  .log-row:first-child { border-top: 1px solid var(--c-line); }
-  .log-row__label { text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
-  .log-row__value { font-weight: 600; text-align: right; }
-
-  .tracks { padding: 90px 0; }
-  .tracks__head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 44px; flex-wrap: wrap; gap: 16px; }
-  .tracks__head h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; }
-
-  .track-list { border-top: 2px solid var(--c-ink); }
-  .track-row {
-    display: grid;
-    grid-template-columns: 44px 56px 1fr 90px 40px;
-    align-items: center; gap: 18px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--c-line);
-    cursor: pointer;
-    transition: background 0.15s ease;
-  }
-  .track-row:hover { background: rgba(20,20,20,0.035); }
-  .track-num { font-family: var(--font-mono); font-size: 13px; color: var(--c-magenta); }
-  .track-cover {
-    width: 56px; height: 56px;
-    border: 2px solid var(--c-ink);
-    overflow: hidden;
-  }
-  .track-cover img { width: 100%; height: 100%; object-fit: cover; }
-  .track-main { min-width: 0; }
-  .track-title {
-    font-family: var(--font-display); font-weight: 700; font-size: 16px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .track-artist {
-    font-family: var(--font-mono); font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.55;
-    margin-top: 3px;
-  }
-  .track-progress {
-    height: 3px; background: var(--c-line); margin-top: 9px;
-    position: relative; cursor: pointer;
-  }
-  .track-progress-fill { position: absolute; inset: 0; width: 0; background: var(--c-magenta); }
-  .track-time { font-family: var(--font-mono); font-size: 11px; text-align: right; opacity: 0.6; }
-  .track-play {
-    width: 38px; height: 38px;
-    border: 2px solid var(--c-ink);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-  .track-play.playing { background: var(--c-ink); color: var(--c-yellow); }
-
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(20,20,20,0.6);
-    align-items: center; justify-content: center;
-    padding: 24px;
-  }
-  .modal-overlay.active { display: flex; }
-  .modal-content {
-    background: var(--c-paper);
-    border: 3px solid var(--c-ink);
-    max-width: 720px; width: 100%;
-    max-height: 88vh; overflow-y: auto;
-    padding: 40px;
-    position: relative;
-  }
-  .modal-close {
-    position: absolute; top: 18px; right: 18px;
-    width: 34px; height: 34px;
-    border: 2px solid var(--c-ink);
-    font-size: 18px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .modal-grid { display: grid; grid-template-columns: 200px 1fr; gap: 32px; }
-  .modal-cover-wrap { border: 2px solid var(--c-ink); aspect-ratio: 1/1; overflow: hidden; }
-  .modal-title { font-size: 26px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
-  .modal-title span { display: block; }
-  .modal-artist { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-bottom: 20px; }
-
-  .modal-player { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
-  .modal-play-btn {
-    width: 48px; height: 48px; border: 2px solid var(--c-ink);
-    display: flex; align-items: center; justify-content: center; font-size: 16px;
-    flex-shrink: 0;
-  }
-  .modal-play-btn.playing { background: var(--c-ink); color: var(--c-yellow); }
-  .modal-progress-wrap { flex: 1; }
-  .modal-progress { height: 3px; background: var(--c-line); position: relative; cursor: pointer; }
-  .modal-progress-fill { position: absolute; inset: 0; width: 0; background: var(--c-magenta); }
-  .modal-time { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; margin-top: 8px; opacity: 0.6; }
-
-  .modal-lyrics {
-    background: var(--c-ink); color: var(--c-paper);
-    padding: 22px; font-size: 14px; line-height: 1.8;
-    max-height: 220px; overflow-y: auto; white-space: pre-line;
-    border: 2px solid var(--c-ink);
-  }
-  .modal-lyrics-title {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-    color: var(--c-yellow); margin-bottom: 12px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-  }
-
-  .contact { background: var(--c-ink); color: var(--c-paper); padding: 100px 0; }
-  .contact .eyebrow { opacity: 0.6; }
-  .contact .eyebrow .reg-mark { opacity: 0.6; }
-  .contact .reg-mark::before, .contact .reg-mark::after { background: var(--c-paper); }
-  .contact .reg-mark span { border-color: var(--c-paper); }
-  .contact h2 { font-size: clamp(30px, 4vw, 44px); margin-bottom: 12px; letter-spacing: -1px; }
-  .contact__sub { font-size: 16px; opacity: 0.75; margin-bottom: 44px; max-width: 460px; }
-
-  .contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-  .encore__form { display: grid; gap: 22px; }
-  .encore__form label {
-    font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
-    letter-spacing: 1px; opacity: 0.6; display: block; margin-bottom: 8px;
-  }
-  .encore__form input, .encore__form textarea {
-    width: 100%; background: transparent; color: var(--c-paper);
-    border: none; border-bottom: 2px solid rgba(242,242,239,0.3);
-    padding: 8px 2px; font-family: var(--font-body); font-size: 15px; outline: none;
-  }
-  .encore__form input:focus, .encore__form textarea:focus { border-bottom-color: var(--c-yellow); }
-  .encore__form textarea { min-height: 90px; resize: vertical; }
-  .encore__form button { align-self: start; margin-top: 8px; }
-
-  .support-block { display: flex; flex-direction: column; justify-content: flex-end; }
-  .support-block a {
-    font-family: var(--font-mono); font-size: 13px; text-transform: uppercase;
-    letter-spacing: 1px; border: 2px solid var(--c-paper); padding: 14px 20px;
-    display: inline-flex; width: fit-content;
-  }
-  .support-block a:hover { background: var(--c-paper); color: var(--c-ink); }
-
-  footer {
-    padding: 28px; text-align: center;
-    font-family: var(--font-mono); font-size: 11px;
-    text-transform: uppercase; letter-spacing: 1px;
-    opacity: 0.6;
-    display: flex; align-items: center; justify-content: center; gap: 14px;
-  }
-
-  @media (max-width: 900px) {
-    .about__grid, .contact__grid { grid-template-columns: 1fr; gap: 40px; }
-    .masthead__nav {
-      position: absolute; top: 100%; left: 0; right: 0;
-      background: var(--c-paper);
-      flex-direction: column; align-items: flex-start;
-      padding: 22px 28px; gap: 18px;
-      border-bottom: 2px solid var(--c-ink);
-      display: none;
-    }
-    .masthead__nav.open { display: flex; }
-    .masthead__burger { display: block; }
-    .track-row { grid-template-columns: 30px 44px 1fr 36px; }
-    .track-time, .track-progress { display: none; }
-    .modal-grid { grid-template-columns: 1fr; }
-    .modal-content { padding: 26px; }
-  }
-  @media (max-width: 520px) {
-    .hero { padding: 90px 0 70px; }
-    .wordmark { letter-spacing: -1.5px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WYHS Music — Press Play</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Background Elements -->
+    <div class="gradient-bg"></div>
+    <canvas id="audioVisualizer"></canvas>
+    <div class="floating-notes" id="floatingNotes"></div>
+    <div class="gradient-overlay"></div>
 
-<header class="masthead">
-  <div class="masthead__inner">
-    <div class="masthead__logo">
-      <span class="masthead__logo-mark"></span>
-      <span>WYHS</span>
-    </div>
-    <nav class="masthead__nav" id="mastheadNav">
-      <a href="#hero">Home</a>
-      <a href="#about">About</a>
-      <a href="#tracks">Tracks</a>
-      <a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">WYHS</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#tracks">Tracks</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">☰</div>
     </nav>
-    <button class="masthead__burger" id="burger" aria-label="Menu">☰</button>
-  </div>
-</header>
 
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="eyebrow"><span class="reg-mark"><span></span></span> Now pressing</div>
-
-    <h1 class="wordmark">
-      <span class="layer ghost cyan" aria-hidden="true">WYHS</span>
-      <span class="layer ghost magenta" aria-hidden="true">WYHS</span>
-      <span class="layer ghost yellow" aria-hidden="true">WYHS</span>
-      <span class="layer key">WYHS</span>
-    </h1>
-
-    <p class="hero__tagline">♫ Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
-
-    <div class="hero__cta-row">
-      <a href="#tracks" class="btn">▶ Play now</a>
-      <a href="#contact" class="btn btn--outline">✉ Request a track</a>
-    </div>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <div class="container">
-    <div class="eyebrow"><span class="reg-mark"><span></span></span> About</div>
-    <div class="about__grid">
-      <div class="about__bio">
-        <p>wyhs makes music with no fixed genre — whatever idea comes.</p>
-        <p>Music can take any shape. Wherever the idea leads.<span class="cursor"></span></p>
-      </div>
-      <div class="log">
-        <div class="log-row"><span class="log-row__label">Tracks released</span><span class="log-row__value" id="trackCountStat">--</span></div>
-        <div class="log-row"><span class="log-row__label">Latest drop</span><span class="log-row__value" id="latestTrackStat">--</span></div>
-        <div class="log-row"><span class="log-row__label">Status</span><span class="log-row__value">Always recording</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="tracks" id="tracks">
-  <div class="container">
-    <div class="tracks__head">
-      <div class="eyebrow" style="margin-bottom:0;"><span class="reg-mark"><span></span></span> Discography</div>
-      <h2>Catalog</h2>
-    </div>
-    <div class="track-list" id="tracksGrid"></div>
-  </div>
-</section>
-
-<div class="modal-overlay" id="modal">
-  <div class="modal-content" data-index="-1">
-    <button class="modal-close" id="modalClose">×</button>
-    <div class="modal-grid">
-      <div class="modal-cover-wrap"><img src="" alt="" class="modal-cover" id="modalCover" style="width:100%;height:100%;object-fit:cover;"></div>
-      <div>
-        <h2 class="modal-title" id="modalTitle"></h2>
-        <p class="modal-artist" id="modalArtist"></p>
-        <div class="modal-player">
-          <button class="modal-play-btn" id="modalPlayBtn">▶</button>
-          <div class="modal-progress-wrap">
-            <div class="modal-progress" id="modalProgress"><div class="modal-progress-fill" id="modalProgressFill"></div></div>
-            <div class="modal-time"><span id="modalCurrentTime">0:00</span><span id="modalDuration">0:00</span></div>
-          </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>WYHS</h1>
+        <p>Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
+        
+        <div class="vinyl-container">
+            <div class="vinyl-record" id="vinylRecord">
+                <div class="vinyl-label">WYHS</div>
+            </div>
         </div>
-        <div class="modal-lyrics" id="modalLyricsBox">
-          <div class="modal-lyrics-title">Lyrics</div>
-          <div id="modalLyrics"></div>
+        
+        <button class="play-btn" id="mainPlayBtn">▶ Play Now</button>
+    </section>
+
+    <!-- Tracks Section -->
+    <section id="tracks" class="reveal">
+        <h2 class="section-title">Discography</h2>
+        <div class="tracks-grid" id="tracksGrid">
+            <!-- Tracks will be loaded here by JavaScript -->
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="eyebrow"><span class="reg-mark"><span></span></span> Contact</div>
-    <h2>Request an encore</h2>
-    <p class="contact__sub">The set's not over — send a request, feedback, or just say hello.</p>
-    <div class="contact__grid">
-      <form class="encore__form" id="contactForm">
-        <div><label for="name">Your name</label><input type="text" id="name" placeholder="Tell me who's listening..." required></div>
-        <div><label for="email">Email</label><input type="email" id="email" placeholder="you@music.fan" required></div>
-        <div><label for="msg">Message</label><textarea id="msg" placeholder="Your request, feedback, or hello..." required></textarea></div>
-        <button type="submit" class="btn btn--magenta">▶ Send</button>
-      </form>
-      <div class="support-block" id="supportBlock"></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span class="reg-mark" style="width:12px;height:12px;"><span></span></span>
-  © 2026 WYHS — PRESS PLAY
-</footer>
-
-<audio id="audioPlayer" preload="metadata"></audio>
-<script src="playlist.js"></script>
-<script>
-  function filenameToTitle(filename) {
-    const base = filename.replace(/\.[^/.]+$/, "");
-    return base.split(/[-_]+/).filter(Boolean)
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-  }
-  function hashString(str) {
-    let h = 0;
-    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0;
-    return h;
-  }
-  function generateCover(filename) {
-    const inks = ["#00AEEF", "#EC008C", "#FFF200"];
-    const h = hashString(filename);
-    const ink = inks[h % 3];
-    const grid = 7, cell = 400 / grid;
-    let dots = "";
-    for (let y = 0; y < grid; y++) {
-      for (let x = 0; x < grid; x++) {
-        const seed = hashString(filename + "-" + x + "-" + y);
-        const tone = (seed % 100) / 100;
-        const r = (cell / 2) * 0.92 * tone;
-        if (r > 1) {
-          dots += `<circle cx="${x*cell+cell/2}" cy="${y*cell+cell/2}" r="${r.toFixed(1)}" fill="${ink}"/>`;
-        }
-      }
-    }
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="#F2F2EF"/>${dots}</svg>`;
-    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
-  }
-  function buildTracks() {
-    const playlist = window.PLAYLIST || [];
-    const lyricsMap = window.LYRICS || {};
-    const artist = window.ARTIST_NAME || "wyhs";
-    return playlist.map((filename, i) => {
-      const rawLyrics = (lyricsMap[filename] || "").trim();
-      const hasLyrics = rawLyrics.length > 12;
-      return {
-        id: i + 1,
-        title: filenameToTitle(filename),
-        artist: artist,
-        num: String(i + 1).padStart(2, "0"),
-        cover: generateCover(filename),
-        src: "audio/" + filename,
-        lyrics: hasLyrics ? rawLyrics : ""
-      };
-    });
-  }
-  const tracks = buildTracks();
-
-  let currentTrackIndex = -1;
-  let isPlaying = false;
-  const audio = document.getElementById('audioPlayer');
-  const tracksGrid = document.getElementById('tracksGrid');
-  const modal = document.getElementById('modal');
-  const modalContent = modal.querySelector('.modal-content');
-  const modalCover = document.getElementById('modalCover');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalArtist = document.getElementById('modalArtist');
-  const modalLyricsBox = document.getElementById('modalLyricsBox');
-  const modalLyrics = document.getElementById('modalLyrics');
-  const modalPlayBtn = document.getElementById('modalPlayBtn');
-  const modalProgress = document.getElementById('modalProgress');
-  const modalProgressFill = document.getElementById('modalProgressFill');
-  const modalCurrentTime = document.getElementById('modalCurrentTime');
-  const modalDuration = document.getElementById('modalDuration');
-  const modalClose = document.getElementById('modalClose');
-  const burger = document.getElementById('burger');
-  const mastheadNav = document.getElementById('mastheadNav');
-
-  function renderTracks() {
-    tracksGrid.innerHTML = tracks.map((t, i) => `
-      <article class="track-row" data-index="${i}">
-        <div class="track-num">${t.num}</div>
-        <div class="track-cover" onclick="openModal(${i})"><img src="${t.cover}" alt="${t.title}"></div>
-        <div class="track-main" onclick="openModal(${i})">
-          <div class="track-title">${t.title}</div>
-          <div class="track-artist">${t.artist}</div>
-          <div class="track-progress" onclick="event.stopPropagation(); seekTrack(event, ${i})">
-            <div class="track-progress-fill track-progress-${i}"></div>
-          </div>
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">About</h2>
+        <div class="about-content">
+            <p>wyhs makes music with no fixed genre — whatever idea comes.</p>
+            <p style="margin-top: 1rem;">Music can take any shape. Wherever the idea leads.</p>
         </div>
-        <div class="track-time"><span class="track-current-${i}">0:00</span></div>
-        <button class="track-play track-play-${i}" onclick="event.stopPropagation(); togglePlay(${i})" aria-label="Play ${t.title}">▶</button>
-      </article>
-    `).join('');
-  }
+    </section>
 
-  function togglePlay(index) {
-    if (currentTrackIndex === index) {
-      if (isPlaying) audio.pause(); else audio.play();
-    } else {
-      currentTrackIndex = index;
-      audio.src = tracks[index].src;
-      audio.play().catch(err => console.log("Playback prevented:", err));
-    }
-  }
-  function seekTrack(event, index) {
-    if (index !== currentTrackIndex) { togglePlay(index); return; }
-    if (!audio.duration) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    audio.currentTime = ((event.clientX - rect.left) / rect.width) * audio.duration;
-  }
-  function seekModal(event) {
-    if (!audio.duration) return;
-    const rect = modalProgress.getBoundingClientRect();
-    audio.currentTime = ((event.clientX - rect.left) / rect.width) * audio.duration;
-  }
-  modalPlayBtn.addEventListener('click', () => {
-    if (currentTrackIndex !== -1) togglePlay(currentTrackIndex);
-  });
-  modalProgress.addEventListener('click', seekModal);
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-form">
+            <p style="margin-bottom: 2rem;">Request an encore. The set's not over — send a request, feedback, or just say hello.</p>
+            <form>
+                <input type="text" placeholder="Your name" class="form-input">
+                <input type="email" placeholder="Email" class="form-input">
+                <textarea placeholder="Message" rows="5" class="form-input"></textarea>
+                <button type="submit" class="play-btn" style="margin-top: 1rem;">▶ Send</button>
+            </form>
+        </div>
+    </section>
 
-  function updateUI() {
-    document.querySelectorAll('.track-play').forEach((btn, i) => {
-      if (i === currentTrackIndex && isPlaying) { btn.innerHTML = '⏸'; btn.classList.add('playing'); }
-      else { btn.innerHTML = '▶'; btn.classList.remove('playing'); }
-    });
-    if (currentTrackIndex !== -1 && isPlaying) { modalPlayBtn.innerHTML = '⏸'; modalPlayBtn.classList.add('playing'); }
-    else { modalPlayBtn.innerHTML = '▶'; modalPlayBtn.classList.remove('playing'); }
-  }
-  function formatTime(s) {
-    if (isNaN(s)) return '0:00';
-    const m = Math.floor(s / 60), sec = Math.floor(s % 60);
-    return `${m}:${sec.toString().padStart(2, '0')}`;
-  }
-  function updateProgress() {
-    if (!audio.duration) return;
-    const pct = (audio.currentTime / audio.duration) * 100;
-    const cardFill = document.querySelector(`.track-progress-${currentTrackIndex}`);
-    if (cardFill) cardFill.style.width = `${pct}%`;
-    const cardTime = document.querySelector(`.track-current-${currentTrackIndex}`);
-    if (cardTime) cardTime.textContent = formatTime(audio.currentTime);
-    modalProgressFill.style.width = `${pct}%`;
-    modalCurrentTime.textContent = formatTime(audio.currentTime);
-    modalDuration.textContent = formatTime(audio.duration);
-  }
-  function openModal(index) {
-    const t = tracks[index];
-    modalContent.dataset.index = index;
-    modalCover.src = t.cover;
-    modalTitle.innerHTML = `<span>${t.num} — ${t.title}</span>`;
-    modalArtist.textContent = t.artist;
-    modalLyrics.textContent = t.lyrics || "No lyrics added yet.";
-    modalLyricsBox.style.display = t.lyrics ? "" : "none";
-    if (currentTrackIndex !== index) { currentTrackIndex = index; audio.src = t.src; isPlaying = false; }
-    modal.classList.add('active');
-    updateUI(); updateProgress();
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+    <!-- Now Playing Bar -->
+    <div class="now-playing" id="nowPlaying">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="now-playing-info">
+            <div class="now-playing-title" id="nowPlayingTitle">Select a track</div>
+            <div class="now-playing-artist" id="nowPlayingArtist">WYHS</div>
+        </div>
+        <div class="now-playing-controls">
+            <button class="control-btn" id="prevBtn">⏮</button>
+            <button class="control-btn" id="playPauseBtn">⏸</button>
+            <button class="control-btn" id="nextBtn">⏭</button>
+        </div>
+    </div>
 
-  audio.addEventListener('play', () => { isPlaying = true; updateUI(); });
-  audio.addEventListener('pause', () => { isPlaying = false; updateUI(); });
-  audio.addEventListener('ended', () => { isPlaying = false; updateUI(); });
-  audio.addEventListener('timeupdate', updateProgress);
-  audio.addEventListener('loadedmetadata', updateProgress);
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 WYHS — PRESS PLAY</p>
+        <a href="https://ko-fi.com/wyhsmusic" target="_blank" class="support-link" id="supportLink">Support WYHS</a>
+    </footer>
 
-  burger.addEventListener('click', () => mastheadNav.classList.toggle('open'));
-  mastheadNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mastheadNav.classList.remove('open')));
+    <!-- Audio Player -->
+    <audio id="audioPlayer" preload="auto"></audio>
 
-  function renderStats() {
-    const countEl = document.getElementById('trackCountStat');
-    const latestEl = document.getElementById('latestTrackStat');
-    if (countEl) countEl.textContent = tracks.length;
-    if (latestEl && tracks.length) latestEl.textContent = tracks[tracks.length - 1].title;
-  }
-  function renderSupportLink() {
-    const el = document.getElementById('supportBlock');
-    const url = window.SUPPORT_URL || "";
-    if (url) el.innerHTML = `<a href="${url}" target="_blank" rel="noopener">Support the music →</a>`;
-  }
-
-  document.getElementById('contactForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    const original = btn.textContent;
-    btn.textContent = '✓ Sent';
-    e.target.reset();
-    setTimeout(() => { btn.textContent = original; }, 2200);
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const id = this.getAttribute('href');
-      if (id === '#') return;
-      const target = document.querySelector(id);
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    });
-  });
-
-  renderTracks();
-  renderStats();
-  renderSupportLink();
-</script>
+    <!-- Scripts -->
+    <script src="playlist.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
