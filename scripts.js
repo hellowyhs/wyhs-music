@@ -1,40 +1,131 @@
-// ============================================
-// AUDIO VISUALIZER
-// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Elements
+    const audioPlayer = document.getElementById('audioPlayer');
+    const tracksGrid = document.getElementById('tracksGrid');
+    const nowPlaying = document.getElementById('nowPlaying');
+    const npTitle = document.getElementById('npTitle');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const mainPlayBtn = document.getElementById('mainPlayBtn');
+    const progressBar = document.getElementById('progressBar');
 
-function initAudioVisualizer() {
-    const canvas = document.getElementById('audioVisualizer');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    let audioContext, analyser, source, dataArray;
-    let isInitialized = false;
-    
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+
+    // Helper to get initials for fallback images
+    function getInitials(title) {
+        const words = title.split(' ');
+        if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+        return title.substring(0, 2).toUpperCase();
     }
-    resize();
-    window.addEventListener('resize', resize);
-    
-    const audio = document.getElementById('audioPlayer');
-    if (!audio) return;
-    
-    audio.addEventListener('play', () => {
-        if (!isInitialized) {
-            try {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                analyser.fftSize = 256;
-                
-                source = audioContext.createMediaElementSource(audio);
-                source.connect(analyser);
-                analyser.connect(audioContext.destination);
-                
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-                isInitialized = true;
-                drawVisualizer();
-            } catch (e) {
+
+    // Load Tracks
+    function loadTracks() {
+        tracksGrid.innerHTML = '';
+        window.PLAYLIST.forEach((file, index) => {
+            const title = file.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const imgFile = file.replace('.mp3', '.jpg'); // Assumes images are .jpg
+
+            const card = document.createElement('div');
+            card.className = 'track-card';
+            
+            // Create image and fallback
+            const artContainer = document.createElement('div');
+            artContainer.className = 'track-art';
+            
+            const img = document.createElement('img');
+            img.src = `images/${imgFile}`;
+            img.alt = title;
+            img.onerror = function() {
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+            };
+
+            const fallback = document.createElement('div');
+            fallback.className = 'art-fallback';
+            fallback.style.display = 'none'; // Hidden by default
+            fallback.textContent = getInitials(title);
+
+            artContainer.appendChild(img);
+            artContainer.appendChild(fallback);
+
+            const info = document.createElement('div');
+            info.className = 'track-info';
+            info.innerHTML = `<div class="track-title">${title}</div><div class="track-artist">${window.ARTIST_NAME}</div>`;
+
+            card.appendChild(artContainer);
+            card.appendChild(info);
+
+            card.addEventListener('click', () => playTrack(index));
+            tracksGrid.appendChild(card);
+        });
+    }
+
+    // Play Track
+    function playTrack(index) {
+        currentTrackIndex = index;
+        const file = window.PLAYLIST[index];
+        const title = file.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        audioPlayer.src = `audio/${file}`;
+        audioPlayer.play();
+        isPlaying = true;
+
+        npTitle.textContent = title;
+        nowPlaying.classList.add('active');
+        playPauseBtn.textContent = '⏸';
+        mainPlayBtn.textContent = '⏸ Now Playing';
+    }
+
+    // Toggle Play/Pause
+    function togglePlayPause() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            isPlaying = true;
+            playPauseBtn.textContent = '⏸';
+            mainPlayBtn.textContent = '⏸ Now Playing';
+        } else {
+            audioPlayer.pause();
+            isPlaying = false;
+            playPauseBtn.textContent = '▶';
+            mainPlayBtn.textContent = '▶ Play Latest';
+        }
+    }
+
+    // Next/Prev
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % window.PLAYLIST.length;
+        playTrack(currentTrackIndex);
+    }
+
+    function prevTrack() {
+        currentTrackIndex = (currentTrackIndex - 1 + window.PLAYLIST.length) % window.PLAYLIST.length;
+        playTrack(currentTrackIndex);
+    }
+
+    // Update Progress
+    function updateProgress() {
+        if (audioPlayer.duration) {
+            progressBar.style.width = (audioPlayer.currentTime / audioPlayer.duration) * 100 + '%';
+        }
+    }
+
+    // Event Listeners
+    mainPlayBtn.addEventListener('click', () => {
+        if (window.PLAYLIST.length > 0) {
+            if (isPlaying && currentTrackIndex === 0) togglePlayPause();
+            else playTrack(0);
+        }
+    });
+
+    playPauseBtn.addEventListener('click', togglePlayPause);
+    document.getElementById('nextBtn').addEventListener('click', nextTrack);
+    document.getElementById('prevBtn').addEventListener('click', prevTrack);
+    audioPlayer.addEventListener('timeupdate', updateProgress);
+    audioPlayer.addEventListener('ended', nextTrack);
+
+    // Initialize
+    loadTracks();
+});            } catch (e) {
                 console.log('Visualizer init failed:', e);
             }
         }
