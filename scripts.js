@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const tracksGrid = document.getElementById('tracksGrid');
+        if (!tracksGrid) {
+            console.error('tracksGrid element not found');
+            return;
+        }
+        
         tracksGrid.innerHTML = '';
         
         window.PLAYLIST.forEach((file, index) => {
@@ -104,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const pauseBtn = document.createElement('button');
             pauseBtn.className = 'control-btn pause-btn';
-            pauseBtn.textContent = '';
+            pauseBtn.textContent = '⏸';
             pauseBtn.disabled = true;
             
             const progressContainer = document.createElement('div');
