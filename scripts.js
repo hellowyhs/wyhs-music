@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- THEME TOGGLE ---
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+    
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
     // --- MOBILE MENU TOGGLE ---
     const mobileMenu = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
@@ -31,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getCMYKColor() {
-        const colors = ['#00ffff', '#ff00ff', '#ffff00', '#ffffff'];
+        const colors = ['#00b4b4', '#d94a8f', '#ffb800', '#ffd93d'];
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
-    // --- LOAD TRACKS (Clean Grid) ---
+    // --- LOAD TRACKS ---
     function loadTracks() {
         if (!window.PLAYLIST || !window.ARTIST_NAME) {
             console.error('Playlist not loaded');
@@ -43,13 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const tracksGrid = document.getElementById('tracksGrid');
-        if (!tracksGrid) return;
+        if (!tracksGrid) {
+            console.error('tracksGrid element not found');
+            return;
+        }
         
         tracksGrid.innerHTML = '';
         
         window.PLAYLIST.forEach((file, index) => {
             const title = file.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
             const imgFile = file.replace('.mp3', '.jpg');
+            const lyrics = window.LYRICS ? window.LYRICS[file] : null;
 
             const card = document.createElement('div');
             card.className = 'track-card';
@@ -120,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = title;
         modalArtist.textContent = window.ARTIST_NAME;
         
-        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getCMYKColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:#000;\'>${getInitials(title)}</div>'">`;
+        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getCMYKColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:var(--text-primary);\'>${getInitials(title)}</div>'">`;
 
         if (lyrics) {
             modalLyricsText.textContent = lyrics;
