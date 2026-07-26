@@ -1,6 +1,9 @@
 /* ============================================
-   WARM CMYK THEME - WITH DARK/LIGHT MODE
+   WARM CMYK THEME - LOWERCASE BRANDING
    ============================================ */
+
+/* Import Archivo Black font for that cool lowercase blocky look */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
 :root {
     /* Light Mode - Warm CMYK Palette */
@@ -53,10 +56,20 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Typography: Archivo Black for headings, forced to lowercase for branding */
 h1, h2, h3, .logo, .btn-primary, .section-title {
-    font-family: 'Arial Black', Impact, sans-serif;
-    text-transform: uppercase;
+    font-family: 'Archivo Black', sans-serif;
     letter-spacing: -1px;
+}
+
+/* Force lowercase for Logo and Main Title */
+.logo, .hero h1 {
+    text-transform: lowercase;
+}
+
+/* Keep buttons and section titles uppercase for contrast */
+.btn-primary, .section-title, h2, h3 {
+    text-transform: uppercase;
 }
 
 /* Navigation */
@@ -99,10 +112,6 @@ nav {
     box-shadow: 1px 1px 0 var(--shadow-color);
     background: var(--yellow-warm);
 }
-.theme-toggle:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 var(--shadow-color);
-}
 
 /* Hero Section */
 .hero {
@@ -120,9 +129,17 @@ nav {
     background: var(--black-warm); color: var(--bg-primary); border: 3px solid var(--border-color);
     padding: 1rem 2.5rem; font-size: 1.2rem; cursor: pointer;
     box-shadow: 6px 6px 0 var(--magenta-warm); transition: all 0.1s; text-decoration: none;
-    display: inline-block; font-family: 'Arial Black', sans-serif; text-transform: uppercase;
+    display: inline-block; text-transform: uppercase;
 }
 .btn-primary:hover { transform: translate(2px, 2px); box-shadow: 4px 4px 0 var(--magenta-warm); }
+
+.btn-secondary {
+    background: var(--bg-primary); color: var(--text-primary); border: 3px solid var(--border-color);
+    padding: 1rem 2.5rem; font-size: 1.2rem; cursor: pointer;
+    box-shadow: 6px 6px 0 var(--black-warm); transition: all 0.1s; text-decoration: none;
+    display: inline-block; font-family: 'Archivo Black', sans-serif; text-transform: uppercase;
+}
+.btn-secondary:hover { transform: translate(2px, 2px); box-shadow: 4px 4px 0 var(--black-warm); background: var(--yellow-warm); }
 
 /* Sections */
 section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
@@ -141,7 +158,7 @@ section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
     gap: 1rem; 
 }
 
-/* Clean Track Card (Only Cover & Title) */
+/* Clean Track Card */
 .track-card {
     background: var(--card-bg); border: 3px solid var(--border-color); box-shadow: 5px 5px 0 var(--shadow-color); 
     overflow: hidden; cursor: pointer; transition: transform 0.1s, background-color 0.3s ease, border-color 0.3s ease;
@@ -155,7 +172,7 @@ section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
 .art-fallback {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; font-weight: 900; color: var(--text-primary); font-family: 'Arial Black', sans-serif;
+    font-size: 2rem; font-weight: 900; color: var(--text-primary); font-family: 'Archivo Black', sans-serif;
 }
 
 .track-title-bar {
@@ -164,9 +181,7 @@ section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
 }
 .track-title { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
 
-/* ============================================
-   MODAL / DETAIL VIEW
-   ============================================ */
+/* Modal */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.9); z-index: 1000;
@@ -213,7 +228,6 @@ section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
 .progress-container { flex: 1; height: 20px; background: var(--progress-bg); border: 2px solid var(--bg-primary); }
 .progress-bar { height: 100%; background: var(--magenta-warm); width: 0%; transition: width 0.1s linear; }
 
-/* Dark Lyrics Section */
 .modal-lyrics { padding: 1.5rem; background: var(--lyrics-bg); color: var(--lyrics-text); border-top: 4px solid var(--border-color); }
 .modal-lyrics h3 { font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; color: var(--cyan-warm); }
 .lyrics-content { font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap; font-family: 'Courier New', monospace; }
@@ -249,18 +263,37 @@ footer p { font-weight: bold; margin-bottom: 1rem; }
     transform: translate(2px, 2px) !important; box-shadow: 1px 1px 0 var(--shadow-color) !important;
 }
 .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-.btn-secondary {
-    background: var(--bg-primary); color: var(--text-primary); border: 3px solid var(--border-color); padding: 1rem 2.5rem;
-    font-size: 1.2rem; cursor: pointer; box-shadow: 6px 6px 0 var(--black-warm); transition: all 0.1s;
-    text-decoration: none; font-family: 'Arial Black', Impact, sans-serif; text-transform: uppercase;
-    display: inline-block;
-}
-.btn-secondary:hover { transform: translate(2px, 2px); box-shadow: 4px 4px 0 var(--black-warm); background: var(--yellow-warm); }
 .footer-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
 
-/* ============================================
-   MOBILE MENU & RESPONSIVE
-   ============================================ */
+/* Scroll to Top Button */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--yellow-warm);
+    color: var(--black-warm);
+    border: 3px solid var(--border-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--shadow-color);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: all 0.2s ease;
+}
+.scroll-top:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--shadow-color);
+}
+.scroll-top.visible {
+    display: flex;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
     .nav-links { 
         display: none; position: absolute; top: 100%; left: 0; right: 0;
@@ -276,12 +309,10 @@ footer p { font-weight: bold; margin-bottom: 1rem; }
     .mobile-menu { display: block; }
     .hero h1 { font-size: 3rem; text-shadow: 3px 3px 0 var(--cyan-warm), 6px 6px 0 var(--magenta-warm); }
     .section-title { font-size: 2rem; }
-    
-    /* 2 columns on mobile */
     .tracks-grid { grid-template-columns: repeat(2, 1fr); } 
-    
     .hero-buttons { flex-direction: column; align-items: center; }
     .btn-primary, .btn-secondary { width: 100%; max-width: 300px; text-align: center; }
     .nav-right { gap: 0.5rem; }
     .theme-toggle { width: 40px; height: 40px; font-size: 1.1rem; }
+    .scroll-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
 }

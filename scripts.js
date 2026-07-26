@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = themeToggle.querySelector('.theme-icon');
     const html = document.documentElement;
     
-    // Check for saved theme preference or default to 'light'
     const currentTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
@@ -46,6 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
         supportLink.style.display = 'none';
     }
 
+    // --- SCROLL TO TOP BUTTON ---
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
     // --- HELPERS ---
     function getInitials(title) {
         const words = title.split(' ');
@@ -66,23 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const tracksGrid = document.getElementById('tracksGrid');
-        if (!tracksGrid) {
-            console.error('tracksGrid element not found');
-            return;
-        }
+        if (!tracksGrid) return;
         
         tracksGrid.innerHTML = '';
         
         window.PLAYLIST.forEach((file, index) => {
             const title = file.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
             const imgFile = file.replace('.mp3', '.jpg');
-            const lyrics = window.LYRICS ? window.LYRICS[file] : null;
 
             const card = document.createElement('div');
             card.className = 'track-card';
             card.dataset.index = index;
             
-            // Image container
             const artContainer = document.createElement('div');
             artContainer.className = 'track-art';
             
@@ -105,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
             artContainer.appendChild(img);
             artContainer.appendChild(fallback);
 
-            // Title bar
             const titleBar = document.createElement('div');
             titleBar.className = 'track-title-bar';
             const trackTitle = document.createElement('div');
@@ -116,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(artContainer);
             card.appendChild(titleBar);
 
-            // Open modal on click
             card.addEventListener('click', () => openModal(index));
             tracksGrid.appendChild(card);
         });
@@ -143,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgFile = file.replace('.mp3', '.jpg');
         const lyrics = window.LYRICS ? window.LYRICS[file] : null;
 
-        // Populate Modal
         modalTitle.textContent = title;
         modalArtist.textContent = window.ARTIST_NAME;
         
@@ -156,13 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
             modalLyricsContainer.style.display = 'none';
         }
 
-        // Reset player buttons
         modalPlayBtn.disabled = false;
         modalPauseBtn.disabled = true;
 
-        // Show modal
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
@@ -188,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalPlayBtn.addEventListener('click', () => {
         if (currentPlayingIndex === -1) {
-            // Find index from modal title (fallback) or just play first track
             playTrack(0); 
         } else {
             audioPlayer.play();
