@@ -13,10 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTrackIndex = 0;
     let isPlaying = false;
 
-    // Set support link from playlist.js
+    // --- CONNECT SUPPORT LINK FROM PLAYLIST.JS ---
     if (window.SUPPORT_URL && window.SUPPORT_URL !== "") {
         supportLink.href = window.SUPPORT_URL;
-        supportLink.style.display = 'inline-block';
     } else {
         supportLink.style.display = 'none';
     }
@@ -26,6 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const words = title.split(' ');
         if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
         return title.substring(0, 2).toUpperCase();
+    }
+
+    // Helper to assign random CMYK colors to fallback art
+    function getCMYKColor() {
+        const colors = ['#00ffff', '#ff00ff', '#ffff00', '#ffffff'];
+        return colors[Math.floor(Math.random() * colors.length)];
     }
 
     // Load Tracks
@@ -63,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fallback.className = 'art-fallback';
             fallback.style.display = 'none';
             fallback.textContent = getInitials(title);
+            fallback.style.backgroundColor = getCMYKColor();
 
             artContainer.appendChild(img);
             artContainer.appendChild(fallback);
@@ -93,10 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaying = true;
 
         npTitle.textContent = title;
-        npArtist.textContent = window.ARTIST_NAME || 'WYHS';
+        npArtist.textContent = window.ARTIST_NAME || 'wyhs';
         nowPlaying.classList.add('active');
-        playPauseBtn.textContent = '';
-        mainPlayBtn.textContent = ' Now Playing';
+        playPauseBtn.textContent = '⏸';
+        mainPlayBtn.textContent = '⏸ NOW PLAYING';
     }
 
     // Toggle Play/Pause
@@ -105,12 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
             audioPlayer.play();
             isPlaying = true;
             playPauseBtn.textContent = '⏸';
-            mainPlayBtn.textContent = '⏸ Now Playing';
+            mainPlayBtn.textContent = '⏸ NOW PLAYING';
         } else {
             audioPlayer.pause();
             isPlaying = false;
             playPauseBtn.textContent = '▶';
-            mainPlayBtn.textContent = '▶ Play Latest';
+            mainPlayBtn.textContent = '▶ PLAY LATEST';
         }
     }
 
@@ -148,90 +154,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize
     loadTracks();
-});lay();
-            isPlaying = true;
-            vinylRecord.classList.add('playing');
-            playPauseBtn.textContent = '⏸';
-            mainPlayBtn.textContent = '⏸ Now Playing';
-        } else {
-            audioPlayer.pause();
-            isPlaying = false;
-            vinylRecord.classList.remove('playing');
-            playPauseBtn.textContent = '▶';
-            mainPlayBtn.textContent = '▶ Play Now';
-        }
-    }
-    
-    // Next track
-    function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % window.PLAYLIST.length;
-        playTrack(currentTrackIndex);
-    }
-    
-    // Previous track
-    function prevTrack() {
-        currentTrackIndex = (currentTrackIndex - 1 + window.PLAYLIST.length) % window.PLAYLIST.length;
-        playTrack(currentTrackIndex);
-    }
-    
-    // Update progress bar
-    function updateProgress() {
-        if (audioPlayer.duration) {
-            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-            progressBar.style.width = progress + '%';
-        }
-    }
-    
-    // Update now playing info
-    function updateNowPlaying() {
-        // Visualizer will update automatically
-    }
-    
-    // Event listeners
-    mainPlayBtn.addEventListener('click', () => {
-        if (window.PLAYLIST.length > 0) {
-            if (isPlaying && currentTrackIndex === 0) {
-                togglePlayPause();
-            } else {
-                playTrack(0);
-            }
-        }
-    });
-    
-    playPauseBtn.addEventListener('click', togglePlayPause);
-    document.getElementById('nextBtn').addEventListener('click', nextTrack);
-    document.getElementById('prevBtn').addEventListener('click', prevTrack);
-    audioPlayer.addEventListener('timeupdate', updateProgress);
-    audioPlayer.addEventListener('ended', nextTrack);
-    
-    // Initialize
-    loadTracks();
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Particle effect on click
-    document.addEventListener('click', (e) => {
-        for (let i = 0; i < 5; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = e.clientX + 'px';
-            particle.style.top = e.clientY + 'px';
-            particle.style.setProperty('--tx', (Math.random() - 0.5) * 100 + 'px');
-            particle.style.setProperty('--ty', (Math.random() - 0.5) * 100 + 'px');
-            document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 3000);
-        }
-    });
 });
