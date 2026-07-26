@@ -66,41 +66,86 @@ section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
 }
 .about-text { text-align: center; font-size: 1.2rem; font-weight: bold; max-width: 600px; margin: 0 auto; }
 
-/* Track Grid & Cards */
-.tracks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
-.track-card {
-    background: #fff; border: 3px solid #000; box-shadow: 8px 8px 0 #000; overflow: hidden;
+/* Track Grid (5 Columns) */
+.tracks-grid { 
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 1rem; 
 }
+
+/* Clean Track Card (Only Cover & Title) */
+.track-card {
+    background: #fff; border: 3px solid #000; box-shadow: 5px 5px 0 #000; 
+    overflow: hidden; cursor: pointer; transition: transform 0.1s;
+}
+.track-card:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 #000; }
+
 .track-art {
-    width: 100%; aspect-ratio: 1 / 1; position: relative; background: #000; border-bottom: 3px solid #000;
+    width: 100%; aspect-ratio: 1 / 1; position: relative; background: #000;
 }
 .track-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .art-fallback {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 3rem; font-weight: 900; color: #000; font-family: 'Arial Black', sans-serif;
+    font-size: 2rem; font-weight: 900; color: #000; font-family: 'Arial Black', sans-serif;
 }
-.track-info { padding: 1.5rem; }
-.track-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; text-transform: uppercase; }
-.track-artist { font-size: 1rem; font-weight: bold; color: #333; margin-bottom: 1rem; }
 
-/* Player Controls */
-.player-controls {
-    display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
-    padding: 1rem; background: #000; border-top: 3px solid #000;
+.track-title-bar {
+    padding: 0.5rem; text-align: center; border-top: 3px solid #000;
+}
+.track-title { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ============================================
+   MODAL / DETAIL VIEW
+   ============================================ */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9); z-index: 1000;
+    display: none; align-items: center; justify-content: center;
+    padding: 1rem;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-content {
+    background: #fff; border: 4px solid #000;
+    box-shadow: 10px 10px 0 #ff00ff;
+    width: 100%; max-width: 500px; max-height: 90vh;
+    overflow-y: auto; position: relative;
+}
+
+.close-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: #000; color: #fff; border: 3px solid #fff;
+    width: 40px; height: 40px; font-size: 1.5rem; font-weight: bold;
+    cursor: pointer; z-index: 10;
+}
+.close-btn:hover { background: #ff00ff; }
+
+.modal-art {
+    width: 100%; aspect-ratio: 1 / 1; background: #000; border-bottom: 4px solid #000;
+}
+.modal-art img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-info { padding: 1.5rem; text-align: center; border-bottom: 4px solid #000; }
+.modal-info h2 { font-size: 2rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+.modal-info p { font-size: 1rem; font-weight: bold; color: #333; }
+
+.modal-player {
+    display: flex; align-items: center; gap: 1rem; padding: 1rem;
+    background: #000; border-bottom: 4px solid #000;
 }
 .control-btn {
     background: #fff; border: 3px solid #fff; color: #000;
     width: 50px; height: 50px; font-size: 1.2rem; cursor: pointer;
     display: flex; align-items: center; justify-content: center; transition: all 0.1s;
 }
-.control-btn:hover { background: #00ffff; transform: translate(2px, 2px); }
-.progress-container { flex: 1; height: 20px; background: #fff; border: 2px solid #fff; position: relative; }
+.control-btn:hover { background: #00ffff; }
+.progress-container { flex: 1; height: 20px; background: #fff; border: 2px solid #fff; }
 .progress-bar { height: 100%; background: #ff00ff; width: 0%; transition: width 0.1s linear; }
 
-/* Lyrics Section */
-.lyrics-section { border-top: 3px solid #000; padding: 1.5rem; background: #ffff00; max-height: 300px; overflow-y: auto; }
-.lyrics-section h3 { font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; }
+/* Dark Lyrics Section (Fixed brightness) */
+.modal-lyrics { padding: 1.5rem; background: #1a1a1a; color: #fff; border-top: 4px solid #000; }
+.modal-lyrics h3 { font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; color: #00ffff; }
 .lyrics-content { font-size: 0.9rem; line-height: 1.8; white-space: pre-wrap; font-family: 'Courier New', monospace; }
 
 /* Contact Form */
@@ -124,7 +169,6 @@ footer p { font-weight: bold; margin-bottom: 1rem; }
 }
 .support-link:hover { background: #fff; color: #000; transform: translate(2px, 2px); }
 
-/* Player Link & Hero Buttons */
 .player-link {
     background: #ff00ff !important; color: #fff !important; border: 3px solid #000 !important;
     padding: 0.5rem 1rem !important; box-shadow: 3px 3px 0 #000 !important;
@@ -161,7 +205,10 @@ footer p { font-weight: bold; margin-bottom: 1rem; }
     .mobile-menu { display: block; }
     .hero h1 { font-size: 3rem; text-shadow: 3px 3px 0 #00ffff, 6px 6px 0 #ff00ff; }
     .section-title { font-size: 2rem; }
-    .tracks-grid { grid-template-columns: 1fr; }
+    
+    /* 2 columns on mobile */
+    .tracks-grid { grid-template-columns: repeat(2, 1fr); } 
+    
     .hero-buttons { flex-direction: column; align-items: center; }
     .btn-primary, .btn-secondary { width: 100%; max-width: 300px; text-align: center; }
 }

@@ -58,6 +58,27 @@
         </div>
     </footer>
 
+    <!-- TRACK DETAIL MODAL -->
+    <div class="modal-overlay" id="trackModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">✕</button>
+            <div class="modal-art" id="modalArt"></div>
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <p id="modalArtist"></p>
+            </div>
+            <div class="modal-player">
+                <button class="control-btn" id="modalPlayBtn">▶</button>
+                <button class="control-btn" id="modalPauseBtn">⏸</button>
+                <div class="progress-container"><div class="progress-bar" id="modalProgressBar"></div></div>
+            </div>
+            <div class="modal-lyrics" id="modalLyricsContainer">
+                <h3>LYRICS</h3>
+                <div class="lyrics-content" id="modalLyricsText"></div>
+            </div>
+        </div>
+    </div>
+
     <audio id="audioPlayer" preload="auto"></audio>
     <script src="playlist.js"></script>
     <script src="scripts.js"></script>

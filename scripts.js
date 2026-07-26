@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
-    // --- LOAD TRACKS ---
+    // --- LOAD TRACKS (Clean Grid) ---
     function loadTracks() {
         if (!window.PLAYLIST || !window.ARTIST_NAME) {
             console.error('Playlist not loaded');
@@ -43,21 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const tracksGrid = document.getElementById('tracksGrid');
-        if (!tracksGrid) {
-            console.error('tracksGrid element not found');
-            return;
-        }
+        if (!tracksGrid) return;
         
         tracksGrid.innerHTML = '';
         
         window.PLAYLIST.forEach((file, index) => {
             const title = file.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
             const imgFile = file.replace('.mp3', '.jpg');
-            const lyrics = window.LYRICS ? window.LYRICS[file] : null;
 
             const card = document.createElement('div');
             card.className = 'track-card';
+            card.dataset.index = index;
             
+            // Image container
             const artContainer = document.createElement('div');
             artContainer.className = 'track-art';
             
@@ -80,150 +78,117 @@ document.addEventListener('DOMContentLoaded', () => {
             artContainer.appendChild(img);
             artContainer.appendChild(fallback);
 
-            const info = document.createElement('div');
-            info.className = 'track-info';
-            
+            // Title bar
+            const titleBar = document.createElement('div');
+            titleBar.className = 'track-title-bar';
             const trackTitle = document.createElement('div');
             trackTitle.className = 'track-title';
             trackTitle.textContent = title;
-            
-            const trackArtist = document.createElement('div');
-            trackArtist.className = 'track-artist';
-            trackArtist.textContent = window.ARTIST_NAME;
-            
-            info.appendChild(trackTitle);
-            info.appendChild(trackArtist);
-
-            const playerControls = document.createElement('div');
-            playerControls.className = 'player-controls';
-            
-            const playBtn = document.createElement('button');
-            playBtn.className = 'control-btn play-btn';
-            playBtn.textContent = '▶';
-            playBtn.dataset.index = index;
-            playBtn.dataset.file = file;
-            
-            const pauseBtn = document.createElement('button');
-            pauseBtn.className = 'control-btn pause-btn';
-            pauseBtn.textContent = '⏸';
-            pauseBtn.disabled = true;
-            
-            const progressContainer = document.createElement('div');
-            progressContainer.className = 'progress-container';
-            
-            const progressBar = document.createElement('div');
-            progressBar.className = 'progress-bar';
-            progressBar.dataset.index = index;
-            
-            progressContainer.appendChild(progressBar);
-            playerControls.appendChild(playBtn);
-            playerControls.appendChild(pauseBtn);
-            playerControls.appendChild(progressContainer);
-
-            let lyricsSection = null;
-            if (lyrics) {
-                lyricsSection = document.createElement('div');
-                lyricsSection.className = 'lyrics-section';
-                
-                const lyricsTitle = document.createElement('h3');
-                lyricsTitle.textContent = 'LYRICS';
-                
-                const lyricsContent = document.createElement('div');
-                lyricsContent.className = 'lyrics-content';
-                lyricsContent.textContent = lyrics;
-                
-                lyricsSection.appendChild(lyricsTitle);
-                lyricsSection.appendChild(lyricsContent);
-            }
+            titleBar.appendChild(trackTitle);
 
             card.appendChild(artContainer);
-            card.appendChild(info);
-            card.appendChild(playerControls);
-            if (lyricsSection) {
-                card.appendChild(lyricsSection);
-            }
+            card.appendChild(titleBar);
 
+            // Open modal on click
+            card.addEventListener('click', () => openModal(index));
             tracksGrid.appendChild(card);
-        });
-
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const index = parseInt(e.target.dataset.index);
-                const file = e.target.dataset.file;
-                playTrack(index, file);
-            });
-        });
-
-        document.querySelectorAll('.pause-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                pauseAll();
-            });
         });
     }
 
-    // --- AUDIO PLAYER LOGIC ---
+    // --- MODAL LOGIC ---
+    const modal = document.getElementById('trackModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalArt = document.getElementById('modalArt');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalArtist = document.getElementById('modalArtist');
+    const modalPlayBtn = document.getElementById('modalPlayBtn');
+    const modalPauseBtn = document.getElementById('modalPauseBtn');
+    const modalProgressBar = document.getElementById('modalProgressBar');
+    const modalLyricsContainer = document.getElementById('modalLyricsContainer');
+    const modalLyricsText = document.getElementById('modalLyricsText');
+
     const audioPlayer = document.getElementById('audioPlayer');
     let currentPlayingIndex = -1;
 
-    function playTrack(index, file) {
-        if (currentPlayingIndex === index && !audioPlayer.paused) {
-            return;
+    function openModal(index) {
+        const file = window.PLAYLIST[index];
+        const title = file.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const imgFile = file.replace('.mp3', '.jpg');
+        const lyrics = window.LYRICS ? window.LYRICS[file] : null;
+
+        // Populate Modal
+        modalTitle.textContent = title;
+        modalArtist.textContent = window.ARTIST_NAME;
+        
+        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getCMYKColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:#000;\'>${getInitials(title)}</div>'">`;
+
+        if (lyrics) {
+            modalLyricsText.textContent = lyrics;
+            modalLyricsContainer.style.display = 'block';
+        } else {
+            modalLyricsContainer.style.display = 'none';
         }
 
+        // Reset player buttons
+        modalPlayBtn.disabled = false;
+        modalPauseBtn.disabled = true;
+
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // --- AUDIO PLAYER LOGIC ---
+    function playTrack(index) {
+        const file = window.PLAYLIST[index];
         currentPlayingIndex = index;
         audioPlayer.src = `audio/${file}`;
         audioPlayer.play();
         
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.disabled = false;
-            btn.textContent = '▶';
-        });
-        document.querySelectorAll('.pause-btn').forEach(btn => {
-            btn.disabled = false;
-        });
-        
-        const activePlayBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
-        if (activePlayBtn) {
-            activePlayBtn.textContent = '▶';
-            activePlayBtn.disabled = true;
-        }
-        
-        updateProgress(index);
+        modalPlayBtn.disabled = true;
+        modalPauseBtn.disabled = false;
     }
 
-    function pauseAll() {
+    modalPlayBtn.addEventListener('click', () => {
+        if (currentPlayingIndex === -1) {
+            // Find index from modal title (fallback) or just play first track
+            playTrack(0); 
+        } else {
+            audioPlayer.play();
+            modalPlayBtn.disabled = true;
+            modalPauseBtn.disabled = false;
+        }
+    });
+
+    modalPauseBtn.addEventListener('click', () => {
         audioPlayer.pause();
-        currentPlayingIndex = -1;
-        
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.disabled = false;
-            btn.textContent = '▶';
-        });
-        document.querySelectorAll('.pause-btn').forEach(btn => {
-            btn.disabled = true;
-        });
-        document.querySelectorAll('.progress-bar').forEach(bar => {
-            bar.style.width = '0%';
-        });
-    }
-
-    function updateProgress(index) {
-        const progressBar = document.querySelector(`.progress-bar[data-index="${index}"]`);
-        if (progressBar && audioPlayer.duration) {
-            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-            progressBar.style.width = progress + '%';
-        }
-    }
+        modalPlayBtn.disabled = false;
+        modalPauseBtn.disabled = true;
+    });
 
     audioPlayer.addEventListener('timeupdate', () => {
-        if (currentPlayingIndex >= 0) {
-            updateProgress(currentPlayingIndex);
+        if (audioPlayer.duration && modal.classList.contains('active')) {
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            modalProgressBar.style.width = progress + '%';
         }
     });
 
     audioPlayer.addEventListener('ended', () => {
-        pauseAll();
+        modalPlayBtn.disabled = false;
+        modalPauseBtn.disabled = true;
+        modalProgressBar.style.width = '0%';
     });
 
+    // Initialize
     loadTracks();
 });
