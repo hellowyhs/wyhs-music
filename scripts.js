@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = themeToggle.querySelector('.theme-icon');
     const html = document.documentElement;
     
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    const currentTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
     
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return title.substring(0, 2).toUpperCase();
     }
 
-    function getCMYKColor() {
-        const colors = ['#00aeef', '#ec008c', '#ffe600', '#1c1a17'];
+    function getAccentColor() {
+        const colors = ['#ff6b4a', '#b83fe0', '#2dd4bf'];
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -99,16 +99,23 @@ document.addEventListener('DOMContentLoaded', () => {
             fallback.className = 'art-fallback';
             fallback.style.display = 'none';
             fallback.textContent = getInitials(title);
-            fallback.style.backgroundColor = getCMYKColor();
+            fallback.style.backgroundColor = getAccentColor();
 
             artContainer.appendChild(img);
             artContainer.appendChild(fallback);
 
             const titleBar = document.createElement('div');
             titleBar.className = 'track-title-bar';
+
+            const trackNum = document.createElement('span');
+            trackNum.className = 'track-num';
+            trackNum.textContent = String(index + 1).padStart(2, '0');
+
             const trackTitle = document.createElement('div');
             trackTitle.className = 'track-title';
             trackTitle.textContent = title;
+
+            titleBar.appendChild(trackNum);
             titleBar.appendChild(trackTitle);
 
             card.appendChild(artContainer);
@@ -145,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setPlayIcon(isPlaying) {
-        modalPlayPauseBtn.textContent = isPlaying ? '⏸' : '▶';
+        modalPlayPauseBtn.classList.toggle('is-playing', isPlaying);
         modalPlayPauseBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
     }
 
@@ -166,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = title;
         modalArtist.textContent = window.ARTIST_NAME;
         
-        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getCMYKColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:var(--paper);\'>${getInitials(title)}</div>'">`;
+        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getAccentColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:700;color:#fff;font-family:Unbounded,sans-serif;\'>${getInitials(title)}</div>'">`;
 
         if (lyrics) {
             modalLyricsText.textContent = lyrics;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,63 +15,66 @@
             <li><a href="#tracks">Tracks</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="https://wyhs.netlify.app" target="_blank" class="player-link">▶ PLAYER</a></li>
+            <li><a href="https://wyhs.netlify.app" target="_blank" class="player-link">▶ Player</a></li>
         </ul>
         <div class="nav-right">
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                 <span class="theme-icon">🌙</span>
             </button>
-            <div class="mobile-menu">☰</div>
+            <div class="mobile-menu" aria-label="Menu"><span></span></div>
         </div>
     </nav>
 
     <section class="hero" id="home">
+        <div class="blob" aria-hidden="true"></div>
         <h1>wyhs</h1>
         <p>Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
         <div class="hero-buttons">
-            <a href="https://wyhs.netlify.app" target="_blank" class="btn-primary">▶ GO TO PLAYER</a>
-            <a href="#tracks" class="btn-secondary">VIEW TRACKS</a>
+            <a href="https://wyhs.netlify.app" target="_blank" class="btn-primary">▶ Go to player</a>
+            <a href="#tracks" class="btn-secondary">View tracks</a>
         </div>
     </section>
 
     <section id="tracks">
-        <h2 class="section-title">DISCOGRAPHY</h2>
+        <h2 class="section-title">discography</h2>
         <div class="tracks-grid" id="tracksGrid"></div>
     </section>
 
     <section id="about">
-        <h2 class="section-title">ABOUT</h2>
+        <h2 class="section-title">about</h2>
         <p class="about-text">wyhs makes music with no fixed genre — whatever idea comes.<br>Music can take any shape. Wherever the idea leads.</p>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">CONTACT</h2>
+        <h2 class="section-title">contact</h2>
         <p class="about-text" style="margin-bottom: 2rem;">Request an encore. The set's not over — send a request, feedback, or just say hello.</p>
         <form class="contact-form">
-            <input type="text" placeholder="YOUR NAME" class="form-input">
-            <input type="email" placeholder="EMAIL" class="form-input">
-            <textarea placeholder="MESSAGE" rows="4" class="form-input"></textarea>
-            <button type="submit" class="btn-primary" style="align-self: center;">SEND</button>
+            <input type="text" placeholder="Your name" class="form-input">
+            <input type="email" placeholder="Email" class="form-input">
+            <textarea placeholder="Message" rows="4" class="form-input"></textarea>
+            <button type="submit" class="btn-primary" style="align-self: center;">Send</button>
         </form>
     </section>
 
     <footer>
         <p>© 2026 wyhs</p>
-        <a href="#" target="_blank" class="support-link" id="supportLink">SUPPORT WYHS</a>
+        <a href="#" target="_blank" class="support-link" id="supportLink">Support wyhs</a>
     </footer>
 
-    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top"><span class="icon-chevron-up"></span></button>
 
     <div class="modal-overlay" id="trackModal">
         <div class="modal-content">
-            <button class="close-btn" id="closeModal">✕</button>
+            <button class="close-btn" id="closeModal" aria-label="Close"><span class="icon-close"></span></button>
             <div class="modal-art" id="modalArt"></div>
             <div class="modal-info">
                 <h2 id="modalTitle"></h2>
                 <p id="modalArtist"></p>
             </div>
             <div class="modal-player">
-                <button class="control-btn play-pause" id="modalPlayPauseBtn" aria-label="Play">▶</button>
+                <button class="control-btn play-pause" id="modalPlayPauseBtn" aria-label="Play">
+                    <span class="icon-play-pause"><span class="tri"></span><span class="bar bar1"></span><span class="bar bar2"></span></span>
+                </button>
                 <div class="progress-wrap">
                     <div class="progress-container" id="modalProgressContainer">
                         <div class="progress-bar" id="modalProgressBar"></div>
@@ -84,7 +87,7 @@
                 </div>
             </div>
             <div class="modal-lyrics" id="modalLyricsContainer">
-                <h3>LYRICS</h3>
+                <h3>Lyrics</h3>
                 <div class="lyrics-content" id="modalLyricsText"></div>
             </div>
         </div>
