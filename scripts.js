@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- THEME TOGGLE ---
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('.theme-icon');
     const html = document.documentElement;
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.addEventListener('click', () => {
         const currentTheme = html.getAttribute('data-theme');
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
     }
 
-    // --- MOBILE MENU TOGGLE ---
     const mobileMenu = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
     
@@ -29,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-        
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -37,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- SUPPORT LINK ---
     const supportLink = document.getElementById('supportLink');
     if (window.SUPPORT_URL && window.SUPPORT_URL !== "") {
         supportLink.href = window.SUPPORT_URL;
@@ -45,9 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         supportLink.style.display = 'none';
     }
 
-    // --- SCROLL TO TOP BUTTON ---
     const scrollTopBtn = document.getElementById('scrollTopBtn');
-    
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             scrollTopBtn.classList.add('visible');
@@ -55,15 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTopBtn.classList.remove('visible');
         }
     });
-    
     scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // --- HELPERS ---
     function getInitials(title) {
         const words = title.split(' ');
         if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
@@ -75,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
-    // --- LOAD TRACKS ---
     function loadTracks() {
         if (!window.PLAYLIST || !window.ARTIST_NAME) {
             console.error('Playlist not loaded');
@@ -132,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- MODAL LOGIC ---
     const modal = document.getElementById('trackModal');
     const closeModalBtn = document.getElementById('closeModal');
     const modalArt = document.getElementById('modalArt');
@@ -182,13 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) closeModal();
     });
 
-    // --- AUDIO PLAYER LOGIC ---
     function playTrack(index) {
         const file = window.PLAYLIST[index];
         currentPlayingIndex = index;
         audioPlayer.src = `audio/${file}`;
         audioPlayer.play();
-        
         modalPlayBtn.disabled = true;
         modalPauseBtn.disabled = false;
     }
@@ -222,6 +206,5 @@ document.addEventListener('DOMContentLoaded', () => {
         modalProgressBar.style.width = '0%';
     });
 
-    // Initialize
     loadTracks();
 });
