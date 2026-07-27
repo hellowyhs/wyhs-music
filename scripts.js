@@ -124,14 +124,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalArt = document.getElementById('modalArt');
     const modalTitle = document.getElementById('modalTitle');
     const modalArtist = document.getElementById('modalArtist');
-    const modalPlayBtn = document.getElementById('modalPlayBtn');
-    const modalPauseBtn = document.getElementById('modalPauseBtn');
+    const modalPlayPauseBtn = document.getElementById('modalPlayPauseBtn');
+    const modalProgressContainer = document.getElementById('modalProgressContainer');
     const modalProgressBar = document.getElementById('modalProgressBar');
+    const modalProgressThumb = document.getElementById('modalProgressThumb');
+    const modalCurrentTime = document.getElementById('modalCurrentTime');
+    const modalDuration = document.getElementById('modalDuration');
     const modalLyricsContainer = document.getElementById('modalLyricsContainer');
     const modalLyricsText = document.getElementById('modalLyricsText');
 
     const audioPlayer = document.getElementById('audioPlayer');
-    let currentPlayingIndex = -1;
+    let currentPlayingIndex = -1; // track actually loaded into the <audio> element
+    let selectedIndex = -1;       // track currently open in the modal
+
+    function formatTime(seconds) {
+        if (!isFinite(seconds) || seconds < 0) return '0:00';
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    function setPlayIcon(isPlaying) {
+        modalPlayPauseBtn.textContent = isPlaying ? '⏸' : '▶';
+        modalPlayPauseBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
+    }
+
+    function resetProgressDisplay() {
+        modalProgressBar.style.width = '0%';
+        modalProgressThumb.style.left = '0%';
+        modalCurrentTime.textContent = '0:00';
+        modalDuration.textContent = '0:00';
+    }
 
     function openModal(index) {
         const file = window.PLAYLIST[index];
@@ -139,10 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgFile = file.replace('.mp3', '.jpg');
         const lyrics = window.LYRICS ? window.LYRICS[file] : null;
 
+        selectedIndex = index;
         modalTitle.textContent = title;
         modalArtist.textContent = window.ARTIST_NAME;
         
-        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getCMYKColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:var(--text-primary);\'>${getInitials(title)}</div>'">`;
+        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getCMYKColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:var(--paper);\'>${getInitials(title)}</div>'">`;
 
         if (lyrics) {
             modalLyricsText.textContent = lyrics;
@@ -151,8 +175,13 @@ document.addEventListener('DOMContentLoaded', () => {
             modalLyricsContainer.style.display = 'none';
         }
 
-        modalPlayBtn.disabled = false;
-        modalPauseBtn.disabled = true;
+        if (currentPlayingIndex === index && !audioPlayer.paused) {
+            setPlayIcon(true);
+            modalDuration.textContent = formatTime(audioPlayer.duration);
+        } else {
+            setPlayIcon(false);
+            resetProgressDisplay();
+        }
 
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -173,37 +202,49 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPlayingIndex = index;
         audioPlayer.src = `audio/${file}`;
         audioPlayer.play();
-        modalPlayBtn.disabled = true;
-        modalPauseBtn.disabled = false;
+        setPlayIcon(true);
     }
 
-    modalPlayBtn.addEventListener('click', () => {
-        if (currentPlayingIndex === -1) {
-            playTrack(0); 
-        } else {
+    modalPlayPauseBtn.addEventListener('click', () => {
+        if (currentPlayingIndex !== selectedIndex) {
+            playTrack(selectedIndex);
+        } else if (audioPlayer.paused) {
             audioPlayer.play();
-            modalPlayBtn.disabled = true;
-            modalPauseBtn.disabled = false;
+            setPlayIcon(true);
+        } else {
+            audioPlayer.pause();
+            setPlayIcon(false);
         }
     });
 
-    modalPauseBtn.addEventListener('click', () => {
-        audioPlayer.pause();
-        modalPlayBtn.disabled = false;
-        modalPauseBtn.disabled = true;
+    modalProgressContainer.addEventListener('click', (e) => {
+        if (!audioPlayer.duration || currentPlayingIndex !== selectedIndex) return;
+        const rect = modalProgressContainer.getBoundingClientRect();
+        const ratio = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+        audioPlayer.currentTime = ratio * audioPlayer.duration;
+    });
+
+    audioPlayer.addEventListener('loadedmetadata', () => {
+        if (modal.classList.contains('active')) {
+            modalDuration.textContent = formatTime(audioPlayer.duration);
+        }
     });
 
     audioPlayer.addEventListener('timeupdate', () => {
-        if (audioPlayer.duration && modal.classList.contains('active')) {
+        if (audioPlayer.duration && modal.classList.contains('active') && currentPlayingIndex === selectedIndex) {
             const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
             modalProgressBar.style.width = progress + '%';
+            modalProgressThumb.style.left = progress + '%';
+            modalCurrentTime.textContent = formatTime(audioPlayer.currentTime);
         }
     });
 
     audioPlayer.addEventListener('ended', () => {
-        modalPlayBtn.disabled = false;
-        modalPauseBtn.disabled = true;
-        modalProgressBar.style.width = '0%';
+        setPlayIcon(false);
+        if (modal.classList.contains('active') && currentPlayingIndex === selectedIndex) {
+            resetProgressDisplay();
+            modalDuration.textContent = formatTime(audioPlayer.duration);
+        }
     });
 
     loadTracks();

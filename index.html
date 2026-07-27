@@ -9,10 +9,7 @@
 <body>
 
     <nav>
-        <div class="logo">
-            <span class="regmark" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="logo-text">wyhs</span>
-        </div>
+        <div class="logo-text">wyhs</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#tracks">Tracks</a></li>
@@ -29,7 +26,6 @@
     </nav>
 
     <section class="hero" id="home">
-        <span class="regmark" aria-hidden="true"><span></span><span></span><span></span></span>
         <h1>wyhs</h1>
         <p>Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
         <div class="hero-buttons">
@@ -39,17 +35,17 @@
     </section>
 
     <section id="tracks">
-        <h2 class="section-title"><span class="regmark" aria-hidden="true"><span></span><span></span><span></span></span>DISCOGRAPHY</h2>
+        <h2 class="section-title">DISCOGRAPHY</h2>
         <div class="tracks-grid" id="tracksGrid"></div>
     </section>
 
     <section id="about">
-        <h2 class="section-title"><span class="regmark" aria-hidden="true"><span></span><span></span><span></span></span>ABOUT</h2>
+        <h2 class="section-title">ABOUT</h2>
         <p class="about-text">wyhs makes music with no fixed genre — whatever idea comes.<br>Music can take any shape. Wherever the idea leads.</p>
     </section>
 
     <section id="contact">
-        <h2 class="section-title"><span class="regmark" aria-hidden="true"><span></span><span></span><span></span></span>CONTACT</h2>
+        <h2 class="section-title">CONTACT</h2>
         <p class="about-text" style="margin-bottom: 2rem;">Request an encore. The set's not over — send a request, feedback, or just say hello.</p>
         <form class="contact-form">
             <input type="text" placeholder="YOUR NAME" class="form-input">
@@ -75,9 +71,17 @@
                 <p id="modalArtist"></p>
             </div>
             <div class="modal-player">
-                <button class="control-btn" id="modalPlayBtn">▶</button>
-                <button class="control-btn" id="modalPauseBtn"></button>
-                <div class="progress-container"><div class="progress-bar" id="modalProgressBar"></div></div>
+                <button class="control-btn play-pause" id="modalPlayPauseBtn" aria-label="Play">▶</button>
+                <div class="progress-wrap">
+                    <div class="progress-container" id="modalProgressContainer">
+                        <div class="progress-bar" id="modalProgressBar"></div>
+                        <div class="progress-thumb" id="modalProgressThumb"></div>
+                    </div>
+                    <div class="time-row">
+                        <span id="modalCurrentTime">0:00</span>
+                        <span id="modalDuration">0:00</span>
+                    </div>
+                </div>
             </div>
             <div class="modal-lyrics" id="modalLyricsContainer">
                 <h3>LYRICS</h3>
