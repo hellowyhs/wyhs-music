@@ -126,7 +126,9 @@ nav {
     display: flex; align-items: center; justify-content: center;
     transition: transform 0.2s ease;
 }
-.theme-toggle:hover { transform: scale(1.08); }
+@media (hover: hover) and (pointer: fine) {
+    .theme-toggle:hover { transform: scale(1.08); }
+}
 
 .player-link {
     background: var(--gradient) !important; color: #fff !important;
@@ -161,7 +163,10 @@ nav {
     transition: transform 0.15s ease, filter 0.15s ease;
     display: inline-block; text-decoration: none;
 }
-.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); }
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .btn-secondary:hover { transform: translateY(-2px); border-color: var(--grad-2); }
+}
 
 .btn-secondary {
     position: relative; z-index: 1;
@@ -170,7 +175,6 @@ nav {
     transition: transform 0.15s ease, border-color 0.15s ease;
     display: inline-block; text-decoration: none;
 }
-.btn-secondary:hover { transform: translateY(-2px); border-color: var(--grad-2); }
 
 .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
 
@@ -198,10 +202,12 @@ section { padding: clamp(3rem, 6vw, 4.5rem) 5%; max-width: 1200px; margin: 0 aut
     overflow: hidden; cursor: pointer;
     transition: border-radius 0.35s ease, transform 0.2s ease, box-shadow 0.2s ease, background-color 0.4s ease;
 }
-.track-card:hover {
-    border-radius: 18px 34px 18px 34px;
-    transform: translateY(-4px);
-    box-shadow: 0 16px 34px var(--shadow);
+@media (hover: hover) and (pointer: fine) {
+    .track-card:hover {
+        border-radius: 18px 34px 18px 34px;
+        transform: translateY(-4px);
+        box-shadow: 0 16px 34px var(--shadow);
+    }
 }
 
 .track-art { width: 100%; aspect-ratio: 1 / 1; position: relative; background: var(--ink); }
@@ -328,7 +334,9 @@ section { padding: clamp(3rem, 6vw, 4.5rem) 5%; max-width: 1200px; margin: 0 aut
     box-shadow: 0 6px 18px var(--shadow);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.social-link:hover { transform: translateY(-3px); box-shadow: 0 12px 26px var(--shadow); }
+@media (hover: hover) and (pointer: fine) {
+    .social-link:hover { transform: translateY(-3px); box-shadow: 0 12px 26px var(--shadow); }
+}
 .social-icon {
     width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
     background: var(--gradient); color: #fff;
@@ -358,7 +366,9 @@ footer p { font-size: 0.8rem; margin-bottom: 1rem; color: var(--ink-soft); }
     padding: 0.75rem 1.8rem; font-weight: 700; border-radius: 999px;
     transition: filter 0.15s, transform 0.15s; margin: 0.5rem;
 }
-.support-link:hover { filter: brightness(1.08); transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) {
+    .support-link:hover { filter: brightness(1.08); transform: translateY(-2px); }
+}
 
 /* ---------- scroll top ---------- */
 .scroll-top {
@@ -369,7 +379,9 @@ footer p { font-size: 0.8rem; margin-bottom: 1rem; color: var(--ink-soft); }
     display: none; align-items: center; justify-content: center;
     z-index: 999; transition: transform 0.15s ease;
 }
-.scroll-top:hover { transform: translateY(-3px); }
+@media (hover: hover) and (pointer: fine) {
+    .scroll-top:hover { transform: translateY(-3px); }
+}
 .scroll-top.visible { display: flex; }
 .icon-chevron-up {
     width: 10px; height: 10px;
