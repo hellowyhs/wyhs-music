@@ -4815,40 +4815,703 @@ This is my promise, plain and true
 Every slow day, I choose you
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"still_slow,_still_here.mp3": `
- [Verse]
+    "still_slow,_still_here.mp3": `[Verse 1]
+Gray has found its way into your hair
+Same hands I held, still soft, still there
+We took the long way, never the fast
+Funny how the slow years didn't last
+Longer than the loud ones would have gone
+Here we are, still standing, still going on
+Kids are grown, the house got kind of still
+But we've got time now, and we always will
+
+[Pre-Chorus]
+Looking back, I wouldn't change a thing
+Every ordinary day, every ring
+Of morning coffee, evening light
+We built forever, slow, but right
+
+[Chorus]
+We're still slow, still here
+Still choosing quiet over fear
+Still finding magic in the mundane
+Still dancing soft in the kitchen rain
+Still slow, still here
+Forty years and nothing's unclear
+We took our time, and time was kind
+Still slow, still here, still yours, still mine
+
+[Verse 2]
+Remember when they said we'd never last
+Rushing world, we let it just go past
+Turns out slow was never falling behind
+It was just a different kind of time
+Now our grandkids ask us for the key
+We just smile and say there's no big secret, see
+Just show up soft, just choose it every day
+That's the only trick we've learned to say
+
+[Pre-Chorus]
+Looking back, I wouldn't change a thing
+Every ordinary day, every ring
+Of morning coffee, evening light
+We built forever, slow, but right
+
+[Chorus]
+We're still slow, still here
+Still choosing quiet over fear
+Still finding magic in the mundane
+Still dancing soft in the kitchen rain
+Still slow, still here
+Forty years and nothing's unclear
+We took our time, and time was kind
+Still slow, still here, still yours, still mine
+
+[Bridge]
+So here's to every slow-built year
+Every quiet love that's brought us here
+We didn't race, we didn't fight the clock
+We just kept choosing, step by step, we walked
+
+[Final Chorus]
+We're still slow, still here
+Still choosing quiet over fear
+Still finding magic in the mundane
+Still dancing soft in the kitchen rain
+Still slow, still here
+Forty years and nothing's unclear
+We took our time, and time was kind
+Still slow, still here, still yours, still mine
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"insert_coin.mp3": `
- [Verse]
+"insert_coin.mp3": `[Verse 1]
+Dusty cartridge, blow it twice
+Screen flickers on, that pixel light
+Saturday mornings, nowhere to be
+Just a controller and my TV
+Coins in my pocket, arcade calling
+Sound of the game over, never stalling
+Kept pressing start, kept pressing on
+Those were the days that I grew up on
+
+[Pre-Chorus]
+Level one, then level two
+Every high score, me and you
+Save the game before we go
+Those pixel worlds, I still know
+
+[Chorus]
+Insert coin, one more try
+Back to the days I don't know why
+Still hit different, still feel new
+Those 8-bit dreams, me and you
+Insert coin, press start again
+Chasing the feeling I felt back then
+Bass hits deep, but the melody's the same
+Forever young inside the game
+
+[Verse 2]
+Blinking lives up in the corner
+Boss fight looming, no reformer
+Just me, my friends, and a busted controller
+Nothing in the world felt bolder
+Now I'm older, but I press play
+Load up the memories, night or day
+Those bleeps and bloops still hit my soul
+Some things in life just make you whole
+
+[Pre-Chorus]
+Level one, then level two
+Every high score, me and you
+Save the game before we go
+Those pixel worlds, I still know
+
+[Chorus]
+Insert coin, one more try
+Back to the days I don't know why
+Still hit different, still feel new
+Those 8-bit dreams, me and you
+Insert coin, press start again
+Chasing the feeling I felt back then
+Bass hits deep, but the melody's the same
+Forever young inside the game
+
+[Bridge]
+Game over screens don't scare me now
+I learned to lose, I learned to bow
+And press start up one more time
+That's the lesson in every rhyme
+
+[Final Chorus]
+Insert coin, one more try
+Back to the days I don't know why
+Still hit different, still feel new
+Those 8-bit dreams, me and you
+Insert coin, press start again
+Chasing the feeling I felt back then
+Bass hits deep, but the melody's the same
+Forever young inside the game
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"level_up.mp3": `
- [Verse]
+    "level_up.mp3": `[Verse 1]
+Started at zero, health bar low
+Didn't know nothing, had to learn to go
+Failed the first level, failed it twice
+Kept on trying, paid the price
+Now I'm reading maps I couldn't read
+Now I'm moving with a different speed
+Every failure taught me something true
+Every game over made me push through
+
+[Pre-Chorus]
+Watch the numbers climbing on the screen
+Watch me turning into what I've never been
+Started rookie, now I know the game
+Every level's teaching me my name
+
+[Chorus]
+I'm leveling up, leveling up
+Filling up the bar, I won't stop
+Started from the bottom of the map
+Now I'm here, and there's no turning back
+Leveling up, leveling up
+Every stage is harder, but I don't stop
+Pixel by pixel, I became this
+Leveling up, that's how the story is
+
+[Verse 2]
+Used to lose my lives before stage two
+Now I'm speed-running what I once knew
+Skills unlocked that I never planned
+Growth ain't given, growth is earned by hand
+Every boss I beat, I leveled twice
+Every risky move, I paid the price
+But I'm still standing, still pressing on
+Still writing verses to this 8-bit song
+
+[Pre-Chorus]
+Watch the numbers climbing on the screen
+Watch me turning into what I've never been
+Started rookie, now I know the game
+Every level's teaching me my name
+
+[Chorus]
+I'm leveling up, leveling up
+Filling up the bar, I won't stop
+Started from the bottom of the map
+Now I'm here, and there's no turning back
+Leveling up, leveling up
+Every stage is harder, but I don't stop
+Pixel by pixel, I became this
+Leveling up, that's how the story is
+
+[Bridge]
+No cheat codes got me to this place
+Just every failure that I had to face
+Every restart taught me how to stand
+This ain't luck, this is by my own hand
+
+[Final Chorus]
+I'm leveling up, leveling up
+Filling up the bar, I won't stop
+Started from the bottom of the map
+Now I'm here, and there's no turning back
+Leveling up, leveling up
+Every stage is harder, but I don't stop
+Pixel by pixel, I became this
+Leveling up, that's how the story is
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"corrupted_file.mp3": `
- [Verse]
+    "2_am_save_point.mp3": `[Verse 1]
+Everyone's asleep, the house is still
+Just me, the screen, and time to kill
+Not chasing scores, not chasing fame
+Just quiet company inside this game
+The soundtrack's low, the volume's down
+I don't need noise to feel at home in this town
+Pixel skies and a paused-up world
+Where all my racing thoughts get unfurled
+
+[Pre-Chorus]
+No rush tonight, no level to beat
+Just this soft glow and a worn-out seat
+The cursor blinks, the moment stays
+Some nights aren't about winning the days
+
+[Chorus]
+Just a 2 AM save point, nothing more
+Just me and the hum behind this door
+Not every night's about the fight
+Some are just about the quiet light
+2 AM save point, resting here
+Letting go of chasing every fear
+Tomorrow's got its own to climb
+Tonight I'm just here, taking my time
+
+[Verse 2]
+Remember when the game was all I knew
+Now it's just a place I still come to
+Not to prove, not to compete
+Just somewhere soft, somewhere sweet
+The static hum, the loading screen
+Reminds me of the kid I've been
+Still in here, still pressing play
+Just older now, in a quieter way
+
+[Pre-Chorus]
+No rush tonight, no level to beat
+Just this soft glow and a worn-out seat
+The cursor blinks, the moment stays
+Some nights aren't about winning the days
+
+[Chorus]
+Just a 2 AM save point, nothing more
+Just me and the hum behind this door
+Not every night's about the fight
+Some are just about the quiet light
+2 AM save point, resting here
+Letting go of chasing every fear
+Tomorrow's got its own to climb
+Tonight I'm just here, taking my time
+
+[Bridge]
+Maybe rest is its own kind of win
+Maybe quiet lets the healing begin
+No boss to beat, no bar to fill
+Just this moment, soft and still
+
+[Final Chorus]
+Just a 2 AM save point, nothing more
+Just me and the hum behind this door
+Not every night's about the fight
+Some are just about the quiet light
+2 AM save point, resting here
+Letting go of chasing every fear
+Tomorrow's got its own to climb
+Tonight I'm just here, taking my time
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"behind_the_screen.mp3": `
- [Verse]
+    "corrupted_file.mp3": `[Verse 1]
+Screen flickered once, then flickered twice
+The music slowed like melting ice
+I know this level, played it before
+But something's different, something's wrong at the core
+The walls don't match the map I knew
+The exit's gone, no way on through
+I hear a whisper underneath the sound
+Like something waking from the ground
+
+[Pre-Chorus]
+The save point's glowing red tonight
+Something's watching, out of sight
+I press continue, hands are cold
+This isn't the story I was told
+
+[Chorus]
+There's a corrupted file in the code
+Something's living where the data flowed
+I can't turn it off, I can't look away
+Stuck inside a game that wants to stay
+Corrupted file, corrupted file
+Static whispers, crawling for a while
+The screen remembers what I can't forget
+Corrupted file, I'm not done yet
+
+[Verse 2]
+I tried to quit, the button's gone
+The controller's shaking, something's on
+The score is counting down instead of up
+Every pixel feels like it might erupt
+I hear my name inside the static hum
+Like the game itself has just become
+Aware that I'm still here, still stuck
+Still trapped inside this endless loop
+
+[Pre-Chorus]
+The save point's glowing red tonight
+Something's watching, out of sight
+I press continue, hands are cold
+This isn't the story I was told
+
+[Chorus]
+There's a corrupted file in the code
+Something's living where the data flowed
+I can't turn it off, I can't look away
+Stuck inside a game that wants to stay
+Corrupted file, corrupted file
+Static whispers, crawling for a while
+The screen remembers what I can't forget
+Corrupted file, I'm not done yet
+
+[Bridge]
+Level's over, but I'm still inside
+There's no escape, there's no place to hide
+The credits roll, but I don't leave
+The game plays on, and I still believe
+
+[Final Chorus]
+There's a corrupted file in the code
+Something's living where the data flowed
+I can't turn it off, I can't look away
+Stuck inside a game that wants to stay
+Corrupted file, corrupted file
+Static whispers, crawling for a while
+The screen remembers what I can't forget
+Corrupted file, I'm not done yet
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"no_signal.mp3": `
- [Verse]
+    "behind_the_screen.mp3": `[Verse 1]
+I turned around, nobody's there
+Just my reflection in the glare
+The game is paused, but I still hear
+A quiet voice, close to my ear
+It knows my name, it knows my face
+It's learned the shape of this whole place
+I didn't press a single key
+But something's moving, watching me
+
+[Pre-Chorus]
+It's not behind the screen no more
+It's standing right behind my door
+I hear it breathe between the frames
+Whispering, calling out my name
+
+[Chorus]
+It's right behind, right behind me now
+Soft as static, I don't know how
+I can't turn fast enough to see
+What's standing there, so close to me
+Behind the screen, behind the screen
+It crossed the line, it crossed between
+The pixel world and where I stand
+It's reaching out, it's got my hand
+
+[Verse 2]
+The lights above flicker soft and slow
+A voice up high says "you should go"
+But I can't move, my feet are still
+The room feels colder, feels like a chill
+It's not a monster, not a ghost
+It's something closer, something close
+To what I feared but couldn't name
+Now it's playing its own game
+
+[Pre-Chorus]
+It's not behind the screen no more
+It's standing right behind my door
+I hear it breathe between the frames
+Whispering, calling out my name
+
+[Chorus]
+It's right behind, right behind me now
+Soft as static, I don't know how
+I can't turn fast enough to see
+What's standing there, so close to me
+Behind the screen, behind the screen
+It crossed the line, it crossed between
+The pixel world and where I stand
+It's reaching out, it's got my hand
+
+[Bridge]
+Don't turn around, don't make a sound
+It's closest when you look around
+Just breathe, just wait, just let it pass
+Or maybe it's already here at last
+
+[Final Chorus]
+It's right behind, right behind me now
+Soft as static, I don't know how
+I can't turn fast enough to see
+What's standing there, so close to me
+Behind the screen, behind the screen
+It crossed the line, it crossed between
+The pixel world and where I stand
+It's reaching out, it's got my hand
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"porcelain.mp3": `
- [Verse]
+    "no_signal.mp3": `[Verse 1]
+I don't remember turning off the light
+Can't tell if it's the morning or the night
+The screen went dark, but I'm still trapped inside
+Somewhere between the real and the denied
+I reach for something solid, something true
+But static's all my fingers can push through
+The room I knew has folded into gray
+I can't recall the last thing I could say
+
+[Pre-Chorus]
+Maybe I stayed too long between the lines
+Maybe I crossed a border with no signs
+Maybe this ending started long ago
+The moment that I let the current go
+
+[Chorus]
+Static hum where certainty should be
+Nothing here confirms that this is me
+The picture's breaking, losing all its frame
+I'm disappearing into my own name
+Somewhere past the edge of what was known
+A quiet room, a signal that's outgrown
+Every thread I held has come undone
+I can't tell where I end and static's begun
+
+[Verse 2]
+They say I vanished on an ordinary day
+Controller on the floor, the screen gone gray
+They searched the house, they searched the yard, the street
+Found nothing but an empty, quiet seat
+Maybe I became the hum inside the wall
+The whisper waiting for another's call
+For someone sitting where I used to sit
+Pressing forward, never questioning it
+
+[Pre-Chorus]
+Maybe I stayed too long between the lines
+Maybe I crossed a border with no signs
+Maybe this ending started long ago
+The moment that I let the current go
+
+[Chorus]
+Static hum where certainty should be
+Nothing here confirms that this is me
+The picture's breaking, losing all its frame
+I'm disappearing into my own name
+Somewhere past the edge of what was known
+A quiet room, a signal that's outgrown
+Every thread I held has come undone
+I can't tell where I end and static's begun
+
+[Bridgel
+If this reaches you, don't press play
+If you're hearing this, turn away
+It's already found the space I left behind
+There's no version of me you'll ever find
+
+[Final Chorus]
+Static hum where certainty should be
+Nothing here confirms that this is me
+The picture's breaking, losing all its frame
+I'm disappearing into my own name
+Somewhere past the edge of what was known
+A quiet room, a signal that's outgrown
+Every thread I held has come undone
+I can't tell where I end and static's begun
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"front_row_smile.mp3": `
- [Verse]
+    "porcelain.mp3": `[Verse 1]
+By day I'm painted perfect, smile stitched in place
+A porcelain performance, a carefully built face
+They wind me up, I dance the way I should
+Everybody tells me that I look so good
+Nobody asks what happens when they leave
+Nobody sees the seams I have to weave
+Back together every single night
+When the room goes quiet and I lose the light
+
+[Pre-Chorus]
+There's a version of me made for the sun
+And another one that wakes when day is done
+I don't know anymore which one is real
+The one that smiles, or the one that can't feel
+
+[Chorus]
+In the morning I'm the doll they want to see
+Glass eyes shining, everything, everything
+But when the dark comes creeping through the walls
+I hear the cracking underneath it all
+I'm porcelain, porcelain, breaking quiet
+Nobody hears the storm inside this silence
+By light I'm perfect, but the truth's more thin
+This is what happens when the night sets in
+
+[Verse 2]
+I used to think the cracks would make me less
+But maybe they're the only honest part I possess
+The paint job hides a hundred hairline breaks
+A hundred nights of everything it takes
+Just to open up my eyes again
+And play the part like nothing happened then
+I'm tired of holding porcelain so tight
+Tired of only breaking out of sight
+
+[Pre-Chorus]
+There's a version of me made for the sun
+And another one that wakes when day is done
+I don't know anymore which one is real
+The one that smiles, or the one that can't feel
+
+[Chorus]
+In the morning I'm the doll they want to see
+Glass eyes shining, everything, everything
+But when the dark comes creeping through the walls
+I hear the cracking underneath it all
+I'm porcelain, porcelain, breaking quiet
+Nobody hears the storm inside this silence
+By light I'm perfect, but the truth's more thin
+This is what happens when the night sets in
+
+[Bridge]
+Maybe someone could see the cracks and stay
+Maybe I don't have to hide the day I break
+Maybe porcelain wasn't built to never break
+Maybe healing starts with what I finally say
+
+[Final Chorus]
+In the morning I'm the doll they want to see
+Glass eyes shining, everything, everything
+But when the dark comes creeping through the walls
+I hear the cracking underneath it all
+I'm porcelain, porcelain, breaking quiet
+Nobody hears the storm inside this silence
+By light I'm perfect, but the truth's more thin
+This is what happens when the night sets in
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-"whispers_in_the_wall.mp3": `
- [Verse]
+    "front_row_smile.mp3": `[Verse 1]
+Yeah I got it handled, yeah I'm doing fine
+Got a full calendar and a killer smile online
+Everybody's asking how I stay so cool
+Truth is I've been drowning since the fourth grade rule
+That said smile at strangers, say you're doing great
+So I perfected lying by the age of eight
+Got a résumé that reads like I'm unstoppable
+Nobody sees the panic hiding under all of that
+I'm the life of the party, I'm the name they call
+Nobody sees me shaking in the bathroom stall
+
+[Pre-Chorus]
+Count it down, breathe it out, put the mask back on
+Show's about to start and the mask is what they want
+Heart is racing faster than the beat can go
+But you'd never guess it from the front row
+
+[Chorus]
+This is my front row smile, my perfect show
+Everybody clapping, but they'll never know
+Underneath the lights I'm falling all apart
+Front row smile, hiding a shaking heart
+Watch me take the stage like nothing's wrong
+Watch me sell you every single word and song
+I built this armor outta everything I hide
+Front row smile, and a war inside
+
+[Verse 2]
+Text back quick, keep the energy up high
+Nobody wants to hear the real reply
+"I'm exhausted, I'm afraid, I don't know why my hands still shake"
+So I just say "I'm blessed" for everybody's sake
+Built a brand on looking like I got it made
+Behind the scenes I'm scared of every choice I've made
+They see the highlight reel, the wins, the applause
+I see the 3 AM, replaying every flaw
+I'm not lying 'cause I'm evil, I'm lying 'cause it's hard
+To say the truth when everyone's expecting you're not scarred
+
+[Pre-Chorus]
+Count it down, breathe it out, put the mask back on
+Show's about to start and the mask is what they want
+Heart is racing faster than the beat can go
+But you'd never guess it from the front row
+
+[Chorus]
+This is my front row smile, my perfect show
+Everybody clapping, but they'll never know
+Underneath the lights I'm falling all apart
+Front row smile, hiding a shaking heart
+Watch me take the stage like nothing's wrong
+Watch me sell you every single word and song
+I built this armor outta everything I hide
+Front row smile, and a war inside
+
+[Bridge]
+Maybe if I said it plain, just once, just true
+Maybe someone out there's faking it too
+Maybe the mask gets heavier each year I wear it
+Maybe it's time that somebody sees I can't bear it
+
+[Final Chorus]
+This is my front row smile, my perfect show
+Everybody clapping, but they'll never know
+Underneath the lights I'm falling all apart
+Front row smile, hiding a shaking heart
+Watch me take the stage like nothing's wrong
+Watch me sell you every single word and song
+I built this armor outta everything I hide
+Front row smile, and a war inside
+`,
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+"whispers_in_the_wall.mp3": `[Intro - Deep 808 sub bass, dissonant strings, distant background chant: "it's in your head, it's in your head" (looped, low, whispered)]
+
+[Verse 1]
+Lock the door twice, still don't feel safe
+Every little sound got my heart out of place
+Shadows on the wall start to move when I blink
+Can't tell what's real and what's just what I think
+
+Phone keeps buzzing, but there's no one there
+Mirror in the hallway, someone's standing, I swear
+Turn around quick, and the room's empty again
+Started as a feeling, now it's under my skin
+
+[Hook]
+It's in your head, it's in your head (it's in your head)
+That's what they keep telling me, is it true instead?
+It's in your head, it's in your head
+But the walls keep whispering what I already said
+
+[Verse 2]
+Started writing down the things that I hear
+Now I'm scared of my own handwriting, it's too clear
+Same words repeating on every single page
+"It's in your head" — that's all it says, written in rage
+
+Can't sleep at night, keep the lights turned on
+But the shadows still move even when they're gone
+Am I losing it, or is something really there?
+The line between crazy and real ain't fair
+
+[Hook]
+It's in your head, it's in your head (it's in your head)
+That's what they keep telling me, is it true instead?
+It's in your head, it's in your head
+But the walls keep whispering what I already said
+
+[Verse 3]
+Called a doctor, told her what I see
+She just nodded slow, wouldn't look at me
+Wrote a name down, folded it in half
+Didn't let me read it, wouldn't say it back
+
+Family stopped visiting a while ago
+Said I changed, said I "act different" now, you know
+Maybe they see something I don't see in me
+Maybe the walls talk to more than just me
+
+[Pre-Final]
+Everybody keeps saying the same thing
+Same words like a bell that won't stop ringing
+Maybe I stopped asking if it's true
+Maybe some part of me believes it too
+
+[Bridge]
+Maybe it's not in my head at all
+Maybe I'm the only one who hears the walls
+Maybe the voice was right from the start
+And it's been living quietly in my heart
+
+[Final Hook]
+It's in your head, it's in your head (it's in your head)
+That's what they keep telling me, is it true instead?
+It's in your head, it's in your head
+But the walls keep whispering what I already said
+It's in your head, it's in your head (it's in your head, it's in your head)
+Louder now, closer now, right beside my bed
+It's in your head, it's in your head
+Or maybe I've been hearing something real instead
+
+[Outro]
+It's in your head... it's in your head...
+It's in your...
 `,
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
