@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getCMYKColor() {
-        const colors = ['#00b4b4', '#d94a8f', '#ffb800', '#ffd93d'];
+        const colors = ['#00aeef', '#ec008c', '#ffe600', '#1c1a17'];
         return colors[Math.floor(Math.random() * colors.length)];
     }
 
