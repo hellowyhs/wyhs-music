@@ -192,9 +192,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        history.pushState({ trackModal: true }, '', '#track');
     }
 
     function closeModal() {
+        if (history.state && history.state.trackModal) {
+            history.back(); // triggers popstate below, which does the actual hiding
+        } else {
+            hideModal();
+        }
+    }
+
+    function hideModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
     }
@@ -202,6 +211,12 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
+    });
+
+    window.addEventListener('popstate', () => {
+        if (modal.classList.contains('active')) {
+            hideModal();
+        }
     });
 
     function playTrack(index) {
