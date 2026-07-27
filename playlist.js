@@ -5440,7 +5440,7 @@ I built this armor outta everything I hide
 Front row smile, and a war inside
 `,
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   "whispers_in_the_wall.mp3": `[Verse 1]
+    "whispers_in_the_wall.mp3": `[Verse 1]
 Lock the door twice, still don't feel safe
 Every little sound got my heart out of place
 Shadows on the wall start to move when I blink
@@ -5451,7 +5451,7 @@ Mirror in the hallway, someone's standing, I swear
 Turn around quick, and the room's empty again
 Started as a feeling, now it's under my skin
 
-[Chorus]
+[Hook]
 It's in your head, it's in your head (it's in your head)
 That's what they keep telling me, is it true instead?
 It's in your head, it's in your head
@@ -5468,7 +5468,7 @@ But the shadows still move even when they're gone
 Am I losing it, or is something really there?
 The line between crazy and real ain't fair
 
-[Chorus]
+[Hook]
 It's in your head, it's in your head (it's in your head)
 That's what they keep telling me, is it true instead?
 It's in your head, it's in your head
@@ -5497,7 +5497,7 @@ Maybe I'm the only one who hears the walls
 Maybe the voice was right from the start
 And it's been living quietly in my heart
 
-[Final Chorus]
+[Final Hook]
 It's in your head, it's in your head (it's in your head)
 That's what they keep telling me, is it true instead?
 It's in your head, it's in your head
