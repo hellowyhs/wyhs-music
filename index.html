@@ -41,16 +41,21 @@
     </nav>
 
     <section class="hero" id="home">
-        <div class="blob" aria-hidden="true"></div>
-        <a href="#tracks" class="new-release-badge" id="newReleaseBadge" style="display:none;">
-            <span class="badge-dot"></span>
-            <span>New release: <span id="newReleaseTitle"></span></span>
-        </a>
+        <p class="hero-eyebrow">wyhs — genre-agnostic</p>
         <h1>wyhs</h1>
-        <p>Music can take any shape. Wherever the idea leads — press play and see where it takes you.</p>
-        <div class="hero-buttons">
-            <a href="https://wyhs.netlify.app" target="_blank" class="btn-primary">▶ Go to player</a>
-            <a href="#tracks" class="btn-secondary">View tracks</a>
+        <p class="hero-sub">Music can take any shape. Wherever the idea leads.</p>
+
+        <button class="play-blob" id="heroPlayBlob" aria-label="Play latest release" style="display:none;">
+            <span class="play-blob-icon"><span class="tri"></span></span>
+            <span class="play-blob-copy">
+                <span class="play-blob-label">New release</span>
+                <span class="play-blob-title" id="newReleaseTitle"></span>
+            </span>
+        </button>
+
+        <div class="hero-links">
+            <a href="https://wyhs.netlify.app" target="_blank" class="hero-link">Full player ↗</a>
+            <a href="#tracks" class="hero-link">All tracks ↓</a>
         </div>
     </section>
 

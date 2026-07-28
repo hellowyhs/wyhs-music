@@ -271,16 +271,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadTracks();
 
-    const newReleaseBadge = document.getElementById('newReleaseBadge');
+    const heroPlayBlob = document.getElementById('heroPlayBlob');
     const newReleaseTitle = document.getElementById('newReleaseTitle');
     if (window.PLAYLIST && window.PLAYLIST.length > 0) {
         const latestFile = window.PLAYLIST[0];
         const latestTitle = latestFile.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         newReleaseTitle.textContent = latestTitle;
-        newReleaseBadge.style.display = 'inline-flex';
-        newReleaseBadge.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(0);
-        });
+        heroPlayBlob.style.display = 'flex';
+        heroPlayBlob.addEventListener('click', () => openModal(0));
     }
 });
