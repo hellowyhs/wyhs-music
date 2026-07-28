@@ -144,6 +144,27 @@ nav {
     text-align: center; max-width: 900px; margin: 0 auto;
     overflow: visible;
 }
+.new-release-badge {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    padding: 0.55rem 1.1rem; margin-bottom: 1.8rem;
+    border-radius: 999px; background: var(--bg-alt); border: 1px solid var(--shadow);
+    font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--ink-soft);
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+    .new-release-badge:hover { border-color: var(--grad-2); color: var(--ink); }
+}
+.badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gradient); flex-shrink: 0;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
 .hero h1 {
     position: relative; z-index: 1;
     font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; margin-bottom: 1.1rem;
