@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = themeToggle.querySelector('.theme-icon');
     const html = document.documentElement;
     
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    const currentTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
     
@@ -58,11 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return title.substring(0, 2).toUpperCase();
     }
 
-    function getAccentColor() {
-        const colors = ['#ff6b4a', '#b83fe0', '#2dd4bf'];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
     function loadTracks() {
         if (!window.PLAYLIST || !window.ARTIST_NAME) {
             console.error('Playlist not loaded');
@@ -99,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fallback.className = 'art-fallback';
             fallback.style.display = 'none';
             fallback.textContent = getInitials(title);
-            fallback.style.backgroundColor = getAccentColor();
 
             artContainer.appendChild(img);
             artContainer.appendChild(fallback);
@@ -173,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = title;
         modalArtist.textContent = window.ARTIST_NAME;
         
-        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='${getAccentColor()}'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:4rem;font-weight:700;color:#fff;font-family:Unbounded,sans-serif;\'>${getInitials(title)}</div>'">`;
+        modalArt.innerHTML = `<img src="images/${imgFile}" alt="${title}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;height:100%;align-items:center;justify-content:center;font-size:3.5rem;font-weight:700;color:var(--ink-soft);font-family:Space Grotesk,sans-serif;\'>${getInitials(title)}</div>'">`;
 
         if (lyrics) {
             modalLyricsText.textContent = lyrics;
@@ -197,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         if (history.state && history.state.trackModal) {
-            history.back(); // triggers popstate below, which does the actual hiding
+            history.back();
         } else {
             hideModal();
         }
@@ -271,13 +265,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadTracks();
 
-    const heroPlayBlob = document.getElementById('heroPlayBlob');
+    const heroReleaseLink = document.getElementById('heroReleaseLink');
     const newReleaseTitle = document.getElementById('newReleaseTitle');
     if (window.PLAYLIST && window.PLAYLIST.length > 0) {
         const latestFile = window.PLAYLIST[0];
         const latestTitle = latestFile.replace('.mp3', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         newReleaseTitle.textContent = latestTitle;
-        heroPlayBlob.style.display = 'flex';
-        heroPlayBlob.addEventListener('click', () => openModal(0));
+        heroReleaseLink.style.display = 'inline-flex';
+        heroReleaseLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(0);
+        });
     }
 });

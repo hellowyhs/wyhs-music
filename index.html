@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,7 @@
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
-    
-    <meta name="theme-color" content="#14110f">
+
     <meta property="og:title" content="wyhs music">
     <meta property="og:description" content="Music can take any shape. Wherever the idea leads.">
     <meta property="og:image" content="https://hellowyhs.github.io/wyhs-music/og-image.png">
@@ -32,7 +30,7 @@
             <li><a href="#tracks">Tracks</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Connect</a></li>
-            <li><a href="https://wyhs.netlify.app" target="_blank" class="player-link">▶ Player</a></li>
+            <li><a href="https://wyhs.netlify.app" target="_blank" class="player-link">Player</a></li>
         </ul>
         <div class="nav-right">
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -43,45 +41,43 @@
     </nav>
 
     <section class="hero" id="home">
-        <p class="hero-eyebrow">wyhs — genre-agnostic</p>
+        <div class="floating-notes" aria-hidden="true">
+            <span class="note n1">♪</span>
+            <span class="note n2">♫</span>
+            <span class="note n3">♬</span>
+            <span class="note n4">♩</span>
+            <span class="note n5">♪</span>
+        </div>
+        <a href="#tracks" class="new-release-link" id="heroReleaseLink" style="display:none;">
+            New release — <span id="newReleaseTitle"></span> <span aria-hidden="true">→</span>
+        </a>
         <h1>wyhs</h1>
         <p class="hero-sub">Music can take any shape. Wherever the idea leads.</p>
-
-        <button class="play-blob" id="heroPlayBlob" aria-label="Play latest release" style="display:none;">
-            <span class="play-blob-icon"><span class="tri"></span></span>
-            <span class="play-blob-copy">
-                <span class="play-blob-label">New release</span>
-                <span class="play-blob-title" id="newReleaseTitle"></span>
-            </span>
-        </button>
-
-        <div class="hero-links">
-            <a href="https://wyhs.netlify.app" target="_blank" class="hero-link">Full player ↗</a>
-            <a href="#tracks" class="hero-link">All tracks ↓</a>
+        <div class="hero-actions">
+            <a href="https://wyhs.netlify.app" target="_blank" class="btn-primary hero-player-link">Go to player</a>
         </div>
     </section>
 
     <section id="tracks">
-        <h2 class="section-title">discography</h2>
+        <h2 class="section-title">Discography</h2>
         <div class="tracks-grid" id="tracksGrid"></div>
     </section>
 
     <section id="about">
-        <h2 class="section-title">about</h2>
-        <p class="about-text">wyhs makes music with no fixed genre — whatever idea comes.<br>Music can take any shape. Wherever the idea leads.</p>
+        <h2 class="section-title">About</h2>
+        <p class="about-text">wyhs makes music with no fixed genre — whatever idea comes. Music can take any shape. Wherever the idea leads.</p>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">connect</h2>
-        <p class="about-text" style="margin-bottom: 2rem;">Find wyhs on:</p>
+        <h2 class="section-title">Connect</h2>
         <div class="social-links">
             <a href="https://youtube.com/@wyhsmusic" target="_blank" class="social-link">
-                <span class="social-icon">YT</span>
                 <span>YouTube</span>
+                <span class="arrow">→</span>
             </a>
             <a href="https://www.tiktok.com/@wyhsmusic" target="_blank" class="social-link">
-                <span class="social-icon">TT</span>
                 <span>TikTok</span>
+                <span class="arrow">→</span>
             </a>
         </div>
     </section>
@@ -126,12 +122,5 @@
     <audio id="audioPlayer" preload="auto"></audio>
     <script src="playlist.js"></script>
     <script src="scripts.js"></script>
-    <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
-    });
-  }
-</script>
 </body>
 </html>
