@@ -7,7 +7,9 @@
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
+    <link rel="manifest" href="/manifest.json">
+    
+    <meta name="theme-color" content="#14110f">
     <meta property="og:title" content="wyhs music">
     <meta property="og:description" content="Music can take any shape. Wherever the idea leads.">
     <meta property="og:image" content="https://hellowyhs.github.io/wyhs-music/og-image.png">
@@ -124,5 +126,12 @@
     <audio id="audioPlayer" preload="auto"></audio>
     <script src="playlist.js"></script>
     <script src="scripts.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
 </body>
 </html>
