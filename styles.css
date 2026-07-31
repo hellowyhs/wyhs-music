@@ -105,7 +105,7 @@ nav {
 .hero {
     position: relative;
     overflow: hidden;
-    padding: clamp(4.5rem, 10vw, 7rem) 6% clamp(3.5rem, 7vw, 5.5rem);
+    padding: clamp(3rem, 8vw, 5.5rem) 6% clamp(2rem, 5vw, 3.5rem);
     max-width: 640px; margin: 0 auto;
     text-align: center;
 }
@@ -150,7 +150,7 @@ nav {
 .new-release-link {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-size: 0.85rem; font-weight: 500; color: var(--ink-soft);
-    text-decoration: none; margin-bottom: 1.6rem;
+    text-decoration: none; margin-bottom: 1.1rem;
     border-bottom: 1px solid var(--border); padding-bottom: 2px;
     transition: border-color 0.15s ease, color 0.15s ease;
 }
@@ -158,11 +158,11 @@ nav {
     .new-release-link:hover { color: var(--accent); border-color: var(--accent); }
 }
 .hero h1 {
-    font-size: clamp(3rem, 10vw, 5rem); font-weight: 700; margin-bottom: 1.1rem;
+    font-size: clamp(3rem, 10vw, 5rem); font-weight: 700; margin-bottom: 0.9rem;
     color: var(--ink);
 }
 .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.15rem); margin-bottom: 2.3rem;
+    font-size: clamp(1rem, 2vw, 1.15rem); margin-bottom: 1.6rem;
     color: var(--ink-soft); max-width: 440px; margin-left: auto; margin-right: auto;
 }
 .hero-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
@@ -188,10 +188,11 @@ nav {
 
 /* ---------- sections ---------- */
 section { padding: clamp(3rem, 6vw, 4.5rem) 6%; max-width: 1100px; margin: 0 auto; }
+#tracks { padding-top: clamp(1rem, 3vw, 2rem); }
 
 .section-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 2.2rem;
+    font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 1.6rem;
     color: var(--ink);
 }
 
