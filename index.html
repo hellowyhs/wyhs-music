@@ -1,126 +1,167 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wyhs music</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<title>wyhs music</title>
+<meta name="description" content="wyhs — music can take any shape, wherever the idea leads.">
 
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png?v=3">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
 
-    <meta property="og:title" content="wyhs music">
-    <meta property="og:description" content="Music can take any shape. Wherever the idea leads.">
-    <meta property="og:image" content="https://hellowyhs.github.io/wyhs-music/og-image.png">
-    <meta property="og:url" content="https://hellowyhs.github.io/wyhs-music/">
-    <meta property="og:type" content="website">
+<meta property="og:type" content="website">
+<meta property="og:title" content="wyhs music">
+<meta property="og:description" content="Music can take any shape, wherever the idea leads.">
+<meta property="og:image" content="https://wyhs.netlify.app/og-image.png?v=4">
+<meta property="og:url" content="https://wyhs.netlify.app">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="wyhs music">
-    <meta name="twitter:description" content="Music can take any shape. Wherever the idea leads.">
-    <meta name="twitter:image" content="https://hellowyhs.github.io/wyhs-music/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="wyhs music">
+<meta name="twitter:description" content="Music can take any shape, wherever the idea leads.">
+<meta name="twitter:image" content="https://wyhs.netlify.app/og-image.png?v=4">
 
-    <link rel="stylesheet" href="styles.css?v=7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=1">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="1be44111-18e5-4ef6-aa95-d432a10c67e7"></script>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-text">wyhs</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#tracks">Tracks</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Connect</a></li>
-            <li><a href="https://wyhs.netlify.app" target="_blank" class="player-link">Player</a></li>
-        </ul>
-        <div class="nav-right">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <span class="theme-icon">🌙</span>
-            </button>
-            <div class="mobile-menu" aria-label="Menu"><span></span></div>
-        </div>
-    </nav>
+<div class="app">
+  <div class="player-col">
+    <p class="eyebrow" id="eyebrow">Ready to Spin</p>
 
-    <section class="hero" id="home">
-        <div class="floating-notes" aria-hidden="true">
-            <span class="note n1">♪</span>
-            <span class="note n2">♫</span>
-            <span class="note n3">♬</span>
-            <span class="note n4">♩</span>
-            <span class="note n5">♪</span>
-        </div>
-        <a href="#tracks" class="new-release-link" id="heroReleaseLink" style="display:none;">
-            New release — <span id="newReleaseTitle"></span> <span aria-hidden="true">→</span>
-        </a>
-        <h1>wyhs</h1>
-        <p class="hero-sub">Music can take any shape. Wherever the idea leads.</p>
-        <div class="hero-actions">
-            <a href="https://wyhs.netlify.app" target="_blank" class="btn-primary hero-player-link">Go to player</a>
-        </div>
-    </section>
-
-    <section id="tracks">
-        <h2 class="section-title">Discography</h2>
-        <div class="tracks-grid" id="tracksGrid"></div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title">About</h2>
-        <p class="about-text">wyhs makes music with no fixed genre — whatever idea comes. Music can take any shape. Wherever the idea leads.</p>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Connect</h2>
-        <div class="social-links">
-            <a href="https://youtube.com/@wyhsmusic" target="_blank" class="social-link">
-                <span>YouTube</span>
-                <span class="arrow">→</span>
-            </a>
-            <a href="https://www.tiktok.com/@wyhsmusic" target="_blank" class="social-link">
-                <span>TikTok</span>
-                <span class="arrow">→</span>
-            </a>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 wyhs</p>
-        <a href="#" target="_blank" class="support-link" id="supportLink">Support wyhs</a>
-    </footer>
-
-    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top"><span class="icon-chevron-up"></span></button>
-
-    <div class="modal-overlay" id="trackModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeModal" aria-label="Close"><span class="icon-close"></span></button>
-            <div class="modal-art" id="modalArt"></div>
-            <div class="modal-info">
-                <h2 id="modalTitle"></h2>
-                <p id="modalArtist"></p>
-            </div>
-            <div class="modal-player">
-                <button class="control-btn play-pause" id="modalPlayPauseBtn" aria-label="Play">
-                    <span class="icon-play-pause"><span class="tri"></span><span class="bar bar1"></span><span class="bar bar2"></span></span>
-                </button>
-                <div class="progress-wrap">
-                    <div class="progress-container" id="modalProgressContainer">
-                        <div class="progress-bar" id="modalProgressBar"></div>
-                        <div class="progress-thumb" id="modalProgressThumb"></div>
-                    </div>
-                    <div class="time-row">
-                        <span id="modalCurrentTime">0:00</span>
-                        <span id="modalDuration">0:00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-lyrics" id="modalLyricsContainer">
-                <h3>Lyrics</h3>
-                <div class="lyrics-content" id="modalLyricsText"></div>
-            </div>
-        </div>
+    <div class="turntable">
+      <div class="platter" id="platter">
+        <div class="label" id="label">
+        <svg viewBox="0 0 200 200" class="label-text">
+          <defs>
+            <path id="topCurve" d="M 52,100 A 48,48 0 0,1 148,100" />
+            <path id="bottomCurve" d="M 52,100 A 48,48 0 0,0 148,100" />
+          </defs>
+          <g fill="var(--ink)" font-family="'Fraunces', serif" font-weight="700" font-size="16" letter-spacing="3" opacity="0.6">
+            <text dominant-baseline="central">
+              <textPath href="#topCurve" startOffset="50%" text-anchor="middle">wyhs</textPath>
+            </text>
+            <text dominant-baseline="central">
+              <textPath href="#bottomCurve" startOffset="50%" text-anchor="middle">music</textPath>
+            </text>
+          </g>
+        </svg>
+      </div>
+        <div class="spindle"></div>
+      </div>
+      <div class="sheen"></div>
     </div>
 
-    <audio id="audioPlayer" preload="auto"></audio>
-    <script src="playlist.js?v=1"></script>
-    <script src="scripts.js?v=1"></script>
+    <div class="now-playing-row">
+      <div class="now-playing">
+        <div class="title-line">
+          <p class="title" id="trackTitle">Ready when you are</p>
+          <button class="btn toggle" id="playerLikeBtn" aria-label="Like this song" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-6.7-4.35-9.3-8.2C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 6.4 2.2 1.4-2.1 4-3.4 6.4-2.2 3 1.5 3.6 5 1.9 7.7C18.7 16.65 12 21 12 21z"/>
+            </svg>
+          </button>
+        </div>
+        <p class="artist" id="trackArtist">Choose a track to start</p>
+      </div>
+    </div>
+
+    <div class="progress-row">
+      <span class="time" id="curTime">0:00</span>
+      <input type="range" id="seek" min="0" max="100" value="0" step="0.1" aria-label="Seek">
+      <span class="time end" id="durTime">0:00</span>
+    </div>
+
+    <div class="transport">
+      <button class="btn toggle" id="shuffleBtn" aria-label="Shuffle" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/>
+          <polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/>
+          <line x1="4" y1="4" x2="9" y2="9"/>
+        </svg>
+      </button>
+
+      <button class="btn skip" id="prevBtn" aria-label="Previous track">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+      </button>
+
+      <button class="btn play-pause" id="playBtn" aria-label="Play">
+        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+      </button>
+
+      <button class="btn skip" id="nextBtn" aria-label="Next track">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
+      </button>
+
+      <button class="btn toggle" id="repeatBtn" aria-label="Repeat track" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="volume-row">
+      <button class="volume-btn" id="volumeBtn" aria-label="Mute">
+        <svg id="volIconOn" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="volIconOff" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3z"/><line x1="16" y1="9" x2="21" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="9" x2="16" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume">
+    </div>
+  </div>
+
+  <div class="playlist-col">
+    <div class="playlist-header">
+      <p class="playlist-heading" id="playlistHeading">Playlist</p>
+      <div class="header-actions">
+        <button class="share-btn" id="shareBtn" aria-label="Share this song">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.6" y1="10.5" x2="15.4" y2="6.5"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/>
+          </svg>
+          <span id="shareLabel">Share</span>
+        </button>
+        <button class="share-btn" id="lyricsBtn" aria-label="Show lyrics" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0 0 4h13"/>
+            <line x1="8" y1="7" x2="15" y2="7"/><line x1="8" y1="10" x2="15" y2="10"/>
+          </svg>
+          Lyrics
+        </button>
+        <button class="filter-pill" id="likedFilterBtn" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.7-4.35-9.3-8.2C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 6.4 2.2 1.4-2.1 4-3.4 6.4-2.2 3 1.5 3.6 5 1.9 7.7C18.7 16.65 12 21 12 21z"/></svg>
+          Liked
+        </button>
+      </div>
+    </div>
+
+    <div id="listView">
+      <input type="text" class="search-box" id="searchBox" placeholder="Search songs…">
+      <ul class="playlist" id="playlist"></ul>
+      <p class="empty-note" id="emptyNote" style="display:none">
+        No tracks yet. Add your song filenames to <code>playlist.js</code>, then reload.
+      </p>
+    </div>
+
+    <div id="lyricsView" class="view-hidden">
+      <p class="lyrics-song" id="lyricsSongTitle">—</p>
+      <p class="lyrics-artist" id="lyricsSongArtist"></p>
+      <pre class="lyrics-body" id="lyricsBody"></pre>
+    </div>
+  </div>
+
+  <a href="#" id="supportLink" class="support-link view-hidden" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.7-4.35-9.3-8.2C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 6.4 2.2 1.4-2.1 4-3.4 6.4-2.2 3 1.5 3.6 5 1.9 7.7C18.7 16.65 12 21 12 21z"/></svg>
+    <span id="supportLinkText">Support</span>
+  </a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<script src="playlist.js?v=1"></script>
+<script src="scripts.js?v=1"></script>
 </body>
 </html>
