@@ -5,8 +5,12 @@ const CACHE_NAME = 'wyhs-cache-v1';
 const CORE_ASSETS = [
   '/',
   '/index.html',
+  '/styles.css',
+  '/scripts.js',
   '/playlist.js',
-  '/favicon.png',
+  '/favicon-32.png',
+  '/favicon-192.png',
+  '/favicon-512.png',
   '/apple-touch-icon.png',
   '/manifest.json'
 ];
