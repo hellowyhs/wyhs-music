@@ -1,31 +1,30 @@
 {
   "name": "wyhs music",
   "short_name": "wyhs",
-  "description": "wyhs music player",
-  "start_url": "/",
-  "scope": "/",
+  "description": "Music can take any shape, wherever the idea leads.",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "background_color": "#14110f",
   "theme_color": "#14110f",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "favicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "/icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }
