@@ -231,6 +231,17 @@
     updateActiveRow();
     if (lyricsViewOpen) refreshLyricsView();
 
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: t.title,
+        artist: t.artist,
+        artwork: [
+          { src: 'favicon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'favicon-512.png', sizes: '512x512', type: 'image/png' },
+        ],
+      });
+    }
+
     if (autoplay) playCurrent();
   }
 
@@ -246,6 +257,9 @@
     els.pauseIcon.style.display = playing ? 'block' : 'none';
     els.playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
     els.eyebrow.textContent = playing ? 'Now Spinning' : (currentIndex === -1 ? 'Ready to Spin' : 'Paused');
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
+    }
     if (!playing) stopSeekLoop();
   }
 
@@ -475,4 +489,31 @@
   if (sharedSong) {
     const sharedIndex = tracks.findIndex(t => t.src.replace(/^audio\//, '') === sharedSong);
     if (sharedIndex !== -1) loadTrack(sharedIndex, false);
+  }
+
+  // Register the service worker so the app installs as a real PWA
+  // with offline support, instead of just a manifest-only install.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {
+        /* offline support just won't be available — the app still works online */
+      });
+    });
+  }
+
+  // Media Session API — this is what puts previous/next (and play/pause)
+  // controls on the Android notification and lock screen, instead of
+  // just a bare play/pause with no way to skip tracks.
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.setActionHandler('play', () => { if (sound) sound.play(); });
+    navigator.mediaSession.setActionHandler('pause', () => { if (sound) sound.pause(); });
+    navigator.mediaSession.setActionHandler('previoustrack', () => goPrev());
+    navigator.mediaSession.setActionHandler('nexttrack', () => goNext());
+    navigator.mediaSession.setActionHandler('seekto', (details) => {
+      if (sound && details.seekTime != null) {
+        sound.seek(details.seekTime);
+        els.seek.value = details.seekTime;
+        els.curTime.textContent = fmtTime(details.seekTime);
+      }
+    });
   }
