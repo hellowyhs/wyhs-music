@@ -1,6 +1,6 @@
 {
-  "name": "wyhs music",
-  "short_name": "wyhs",
+  "name": "sahayo music",
+  "short_name": "sahayo",
   "description": "Music can take any shape, wherever the idea leads.",
   "start_url": "./index.html",
   "scope": "./",
