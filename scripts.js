@@ -58,13 +58,13 @@
 
   function loadLiked() {
     try {
-      const raw = localStorage.getItem('wyhs-liked-tracks');
+      const raw = localStorage.getItem('sahayo-liked-tracks');
       return raw ? new Set(JSON.parse(raw)) : new Set();
     } catch (e) { return new Set(); }
   }
 
   function saveLiked() {
-    try { localStorage.setItem('wyhs-liked-tracks', JSON.stringify([...likedSet])); }
+    try { localStorage.setItem('sahayo-liked-tracks', JSON.stringify([...likedSet])); }
     catch (e) { /* storage unavailable, likes just won't persist */ }
   }
 
@@ -149,7 +149,7 @@
         <button class="heart-btn${liked ? ' liked' : ''}" data-idx="${i}"
           aria-label="${liked ? 'Unlike' : 'Like'} ${t.title}" aria-pressed="${liked}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21s-6.7-4.35-9.3-8.2C1 10.1 1.6 6.6 4.6 5.1c2.4-1.2 5 .1 6.4 2.2 1.4-2.1 4-3.4 6.4-2.2 3 1.5 3.6 5 1.9 7.7C18.7 16.65 12 21 12 21z"/>
+            <path d="M12 20.5C12 20.5 2.5 13.5 2.5 8.2C2.5 4.8 5.2 2.2 8.3 2.2C10.3 2.2 12 3.5 12 5.8C12 3.5 13.7 2.2 15.7 2.2C18.8 2.2 21.5 4.8 21.5 8.2C21.5 13.5 12 20.5 12 20.5Z"/>
           </svg>
         </button>
       `;
@@ -373,13 +373,13 @@
 
   function loadVolume() {
     try {
-      const raw = localStorage.getItem('wyhs-volume');
+      const raw = localStorage.getItem('sahayo-volume');
       return raw !== null ? parseFloat(raw) : 0.8;
     } catch (e) { return 0.8; }
   }
 
   function saveVolume(v) {
-    try { localStorage.setItem('wyhs-volume', v); } catch (e) { /* not persisted this session */ }
+    try { localStorage.setItem('sahayo-volume', v); } catch (e) { /* not persisted this session */ }
   }
 
   function setVolume(v) {

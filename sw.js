@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wyhs-cache-v1';
+const CACHE_NAME = 'sahayo-cache-v1';
 
 // Core files needed to load the app shell offline.
 // Add/remove filenames here to match what's actually in your project.

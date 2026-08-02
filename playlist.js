@@ -5525,6 +5525,6 @@ It's in your...
 // 4. (Optional) Add a "Support" link at the bottom of the page —
 //    Ko-fi, Buy Me a Coffee, Bandcamp, PayPal.me, anything with a
 //    URL works. Leave it blank ("") to hide the link entirely.
-window.SUPPORT_URL = "https://ko-fi.com/wyhsmusic";
+window.SUPPORT_URL = "https://ko-fi.com/sahayomusic";
 // Example: window.SUPPORT_URL = "https://ko-fi.com/wyhs";
 // ============================================================
