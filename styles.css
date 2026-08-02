@@ -419,6 +419,31 @@
     margin-bottom: 10px;
   }
 
+  .view-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 2px;
+  }
+  .view-back-btn svg { width: 16px; height: 16px; }
+  @media (hover: hover) and (pointer: fine) {
+    .view-back-btn:hover { opacity: 0.75; }
+  }
+
+  .view-subnote {
+    font-size: 12px;
+    color: var(--muted);
+    margin: -2px 0 10px;
+    padding: 0 2px;
+  }
+
   .header-actions {
     display: flex;
     align-items: center;

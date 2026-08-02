@@ -31,6 +31,9 @@
     lyricsBtn: document.getElementById('lyricsBtn'),
     listView: document.getElementById('listView'),
     lyricsView: document.getElementById('lyricsView'),
+    viewBackBtn: document.getElementById('viewBackBtn'),
+    headerActions: document.getElementById('headerActions'),
+    likedSubnote: document.getElementById('likedSubnote'),
     playlistHeading: document.getElementById('playlistHeading'),
     lyricsSongTitle: document.getElementById('lyricsSongTitle'),
     lyricsSongArtist: document.getElementById('lyricsSongArtist'),
@@ -229,7 +232,7 @@
     els.seek.value = 0;
     els.curTime.textContent = '0:00';
     updateActiveRow();
-    if (lyricsViewOpen) refreshLyricsView();
+    if (currentView === 'lyrics') refreshLyricsView();
 
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
@@ -348,15 +351,8 @@
     toggleLike(currentIndex);
   });
 
-  els.likedFilterBtn.addEventListener('click', () => {
-    if (lyricsViewOpen) setLyricsView(false);
-    filterLikedOnly = !filterLikedOnly;
-    els.likedFilterBtn.classList.toggle('active', filterLikedOnly);
-    els.likedFilterBtn.setAttribute('aria-pressed', filterLikedOnly);
-    renderPlaylist();
-    // Filtering only changes what's visible/navigable — it never
-    // touches what's currently playing.
-  });
+  // View state is set up further below, after all view-related
+  // elements and helper functions are defined.
 
   els.searchBox.addEventListener('input', () => {
     searchQuery = els.searchBox.value.trim().toLowerCase();
@@ -409,7 +405,64 @@
     saveVolume(v);
   });
 
-  let lyricsViewOpen = false;
+  // --- View system: Home / Lyrics / Liked -------------------------------
+  // Three distinct, mutually-exclusive views. Entering Lyrics or Liked
+  // adds a browser-history entry, so the phone's back button (or gesture)
+  // returns to Home — same as tapping the on-screen Back button. Only
+  // Home shows the Share/Lyrics/Liked buttons; the other two views show
+  // a single, obvious Back button instead, so there's always exactly one
+  // clear way to go back.
+  let currentView = 'home'; // 'home' | 'lyrics' | 'liked'
+
+  function applyView(view) {
+    currentView = view;
+    const isHome = view === 'home';
+    const isLyrics = view === 'lyrics';
+    const isLiked = view === 'liked';
+
+    filterLikedOnly = isLiked;
+
+    els.lyricsView.classList.toggle('view-hidden', !isLyrics);
+    els.listView.classList.toggle('view-hidden', isLyrics);
+    els.likedSubnote.classList.toggle('view-hidden', !isLiked);
+
+    els.headerActions.classList.toggle('view-hidden', !isHome);
+    els.viewBackBtn.classList.toggle('view-hidden', isHome);
+
+    els.lyricsBtn.setAttribute('aria-pressed', isLyrics);
+    els.likedFilterBtn.classList.toggle('active', isLiked);
+    els.likedFilterBtn.setAttribute('aria-pressed', isLiked);
+
+    els.playlistHeading.textContent = isLyrics ? 'Lyrics' : isLiked ? 'Liked Songs' : 'Playlist';
+
+    if (isLyrics) refreshLyricsView();
+    if (!isLyrics) renderPlaylist();
+  }
+
+  function goToView(view) {
+    if (view === currentView) return;
+    applyView(view);
+    history.pushState({ view }, '', '#' + view);
+  }
+
+  function goHome() {
+    if (currentView === 'home') return;
+    if (history.state && history.state.view) {
+      history.back(); // triggers popstate below, which does the actual switch
+    } else {
+      applyView('home');
+    }
+  }
+
+  window.addEventListener('popstate', () => {
+    if (currentView !== 'home') applyView('home');
+  });
+
+  els.viewBackBtn.addEventListener('click', goHome);
+
+  els.likedFilterBtn.addEventListener('click', () => {
+    goToView('liked');
+  });
 
   function refreshLyricsView() {
     if (currentIndex === -1) return;
@@ -426,19 +479,9 @@
     }
   }
 
-  function setLyricsView(open) {
-    lyricsViewOpen = open;
-    els.lyricsView.classList.toggle('view-hidden', !open);
-    els.listView.classList.toggle('view-hidden', open);
-    els.lyricsBtn.classList.toggle('active', open);
-    els.lyricsBtn.setAttribute('aria-pressed', open);
-    els.playlistHeading.textContent = open ? 'Lyrics' : 'Playlist';
-    if (open) refreshLyricsView();
-  }
-
   els.lyricsBtn.addEventListener('click', () => {
     if (currentIndex === -1) return;
-    setLyricsView(!lyricsViewOpen);
+    goToView('lyrics');
   });
 
   function getShareUrl(index) {
