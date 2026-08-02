@@ -2,7 +2,7 @@
 // YOUR PLAYLIST — this is the only file you need to edit.
 //
 // 1. Put your song's artist name here (shows under every track):
-window.ARTIST_NAME = "wyhs";
+window.ARTIST_NAME = "sahayo";
 
 // 2. List your MP3 filenames below, one per line, in quotes,
 //    separated by commas. These must exactly match the files
