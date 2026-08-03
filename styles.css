@@ -154,6 +154,8 @@
     border-radius: 50%;
     background: #131b2a;
     box-shadow: 0 18px 40px -12px rgba(0,0,0,0.7), inset 0 0 0 1px var(--line);
+    animation: spin 3.2s linear infinite;
+    animation-play-state: paused;
     overflow: hidden;
   }
 
@@ -171,19 +173,7 @@
     );
   }
 
-  /* Subtle rotating light-sweep — gives a "still spinning" visual cue
-     without spinning the actual cover art (which was causing dizziness). */
-  .platter::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.07) 12deg, transparent 26deg, transparent 360deg);
-    animation: spin 3.2s linear infinite;
-    animation-play-state: paused;
-  }
-
-  .platter.playing::after { animation-play-state: running; }
+  .platter.playing { animation-play-state: running; }
 
   .label {
     position: absolute;
@@ -216,21 +206,6 @@
   .label-art.visible { display: block; }
   .label-art.visible ~ .label-text { display: none; }
 
-  .sheen {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: linear-gradient(
-      115deg,
-      rgba(255,255,255,0) 30%,
-      rgba(255,255,255,0.14) 46%,
-      rgba(255,255,255,0.03) 52%,
-      rgba(255,255,255,0) 70%
-    );
-    pointer-events: none;
-    z-index: 4;
-  }
-
   .spindle {
     position: absolute;
     top: 50%;
@@ -250,7 +225,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .platter::after { animation: none; }
+    .platter { animation: none; }
   }
 
   /* --- Now playing text --- */
