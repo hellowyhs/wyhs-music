@@ -194,6 +194,17 @@
     pointer-events: none;
   }
 
+  .label-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  .label-art.visible { display: block; }
+  .label-art.visible ~ .label-text { display: none; }
+
   .sheen {
     position: absolute;
     inset: 0;

@@ -9,6 +9,7 @@
   const els = {
     eyebrow: document.getElementById('eyebrow'),
     platter: document.getElementById('platter'),
+    labelArt: document.getElementById('labelArt'),
     title: document.getElementById('trackTitle'),
     artist: document.getElementById('trackArtist'),
     seek: document.getElementById('seek'),
@@ -196,11 +197,29 @@
     container.scrollTo({ top: container.scrollTop + delta, behavior: 'smooth' });
   }
 
+  // Tries each cover art format in turn (webp first — smallest file size —
+  // then jpg, then png) and falls back to the text label if none exist.
+  // This means any format works for any song without touching this code.
+  const COVER_FORMATS = ['.webp', '.jpg', '.png'];
+  function loadCoverArt(coverBase, formatIndex = 0) {
+    if (formatIndex >= COVER_FORMATS.length) {
+      els.labelArt.classList.remove('visible');
+      return;
+    }
+    els.labelArt.classList.remove('visible');
+    els.labelArt.onload = () => els.labelArt.classList.add('visible');
+    els.labelArt.onerror = () => loadCoverArt(coverBase, formatIndex + 1);
+    els.labelArt.src = `images/${coverBase}${COVER_FORMATS[formatIndex]}`;
+  }
+
   function loadTrack(index, autoplay) {
     if (tracks.length === 0) return;
     if (sound) { sound.unload(); }
     currentIndex = ((index % tracks.length) + tracks.length) % tracks.length;
     const t = tracks[currentIndex];
+
+    const coverBase = t.src.replace(/^audio\//, '').replace(/\.mp3$/i, '');
+    loadCoverArt(coverBase);
 
     sound = new Howl({
       src: [t.src],
