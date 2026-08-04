@@ -173,6 +173,17 @@
     );
   }
 
+  /* Bright sweep — rotates automatically along with .platter itself,
+     since it's part of the same element's rendered output. Makes the
+     spin clearly visible even though the rings alone are symmetric. */
+  .platter::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.16) 10deg, transparent 24deg, transparent 360deg);
+  }
+
   .platter.playing { animation-play-state: running; }
 
   .label {
