@@ -154,7 +154,7 @@
     border-radius: 50%;
     background: #131b2a;
     box-shadow: 0 18px 40px -12px rgba(0,0,0,0.7), inset 0 0 0 1px var(--line);
-    animation: spin 3.2s linear infinite;
+    animation: spin 9s linear infinite;
     animation-play-state: paused;
     overflow: hidden;
   }
@@ -171,17 +171,6 @@
       #131b2a 3.2%,
       #131b2a 6.4%
     );
-  }
-
-  /* Bright sweep — rotates automatically along with .platter itself,
-     since it's part of the same element's rendered output. Makes the
-     spin clearly visible even though the rings alone are symmetric. */
-  .platter::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.16) 10deg, transparent 24deg, transparent 360deg);
   }
 
   .platter.playing { animation-play-state: running; }
